@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   FONT SIZE SYSTEM
+   Controlled by [data-font-size] on <html>
+   ============================================= */
+:root {
+  --font-base: 18px;
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.25rem;
+  --font-2xl: 1.5rem;
+  --font-3xl: 1.875rem;
+  --font-4xl: 2.25rem;
+}
+
+html[data-font-size='small'] {
+  --font-base: 16px;
+}
+html[data-font-size='medium'] {
+  --font-base: 18px;
+}
+html[data-font-size='large'] {
+  --font-base: 21px;
+}
+
+html {
+  font-size: var(--font-base);
+}
+
+body {
+  background-color: #FBF8F4;
+  color: #2C1A0E;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  /* Prevent horizontal scroll everywhere */
+  overflow-x: hidden;
+}
+
+/* =============================================
+   TYPOGRAPHY
+   ============================================= */
+.font-display {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+/* =============================================
+   LESSON CONTENT PROSE
+   ============================================= */
+.lesson-prose {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4A3728;
+}
+
+.lesson-prose p {
+  margin-bottom: 1.25rem;
+}
+
+.lesson-prose strong {
+  color: #2C1A0E;
+  font-weight: 600;
+}
+
+/* =============================================
+   SMOOTH SCROLL
+   ============================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =============================================
+   FOCUS STYLES (accessibility)
+   ============================================= */
+:focus-visible {
+  outline: 3px solid #D97706;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* =============================================
+   TOUCH TARGETS — min 44px
+   ============================================= */
+button, a, [role='button'] {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes confettiBurst {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-120px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.6); opacity: 0; }
+  70%  { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-pop-in {
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.confetti-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confettiBurst 1s ease-out forwards;
+}
+
+/* =============================================
+   SCROLLBAR (subtle)
+   ============================================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C9A99A; border-radius: 3px; }
+
+/* =============================================
+   TABLE OVERFLOW HELPER
+   ============================================= */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+}
