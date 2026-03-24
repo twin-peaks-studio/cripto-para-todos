@@ -55,7 +55,7 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'La mayoría de personas que empiezan con cripto lo hacen a través de una plataforma como <strong>Coinbase</strong> — y funciona igual que cualquier cuenta en internet: te registras con tu correo y una contraseña. Si olvidas tu contraseña, la recuperas por correo, igual que con tu banco en línea. La plataforma guarda tu cripto por ti.<br><br>A medida que aprendes más, quizás escuches sobre tener tu propia <strong>billetera o wallet</strong>. Eso es diferente: en ese caso, <em>tú</em> serías el responsable de una clave especial llamada <strong>frase semilla</strong>. Si la perdieras, nadie podría ayudarte a recuperarla. Pero como principiante usando Coinbase u otra plataforma conocida, no necesitas preocuparte por eso todavía.',
+        html: 'La mayoría de personas que empiezan con cripto lo hacen a través de una plataforma conocida como <strong>Coinbase</strong> o <strong>Kraken</strong>. Esto se llama una cuenta <em>custodial</em> — funciona igual que cualquier cuenta en internet: te registras con tu correo y una contraseña, y si la olvidas, la recuperas por correo. La plataforma guarda las claves de tu cripto por ti. <strong>Importante:</strong> a diferencia de un banco, tu cripto en estas plataformas no está asegurado por el gobierno — si la plataforma es hackeada o cierra, no hay garantía de recuperación.<br><br>A medida que aprendes más, quizás escuches sobre tener tu propia <strong>billetera o wallet</strong>. Eso es diferente — se llama <em>auto-custodia</em>. En ese caso, <em>tú</em> controlas una clave especial de 12 a 24 palabras llamada <strong>frase semilla</strong>. Quien tenga esas palabras tiene acceso total a tu cripto — y si las pierdes, nadie en el mundo puede ayudarte a recuperarlo. Como principiante, no necesitas llegar ahí todavía.',
       },
       {
         type: 'warn',
@@ -329,8 +329,8 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'analogy',
-        label: '💡 Piénsalo así — el dinero debajo del colchón',
-        html: 'Guardar cripto en un exchange es un poco como guardar dinero en efectivo debajo del colchón. Si hay un robo (hackeo), no hay seguro que te lo devuelva. Por eso los expertos en cripto dicen "not your keys, not your coins" — si no controlas tú mismo las contraseñas de tu cripto, estás confiando en que la plataforma sea honesta y segura.',
+        label: '💡 Piénsalo así — cuenta bancaria vs. caja fuerte en casa',
+        html: 'Una cuenta en Coinbase es como una cuenta bancaria: el banco (Coinbase) guarda tu dinero, tú tienes un usuario y contraseña, y si la olvidas te pueden ayudar. Pero si el banco falla, dependes de que alguien te lo devuelva. Una billetera propia (auto-custodia) es como una caja fuerte en tu casa: nadie más tiene la llave, nadie puede quitarte lo tuyo — pero si pierdes la combinación, tampoco hay nadie que pueda abrirla por ti. Por eso dicen "not your keys, not your coins" — si la plataforma guarda tus claves, estás confiando en ella.',
       },
       {
         type: 'heading',
@@ -339,7 +339,7 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'En el mundo del cripto, los errores no se pueden deshacer. Si mandas cripto a la dirección equivocada, se pierde para siempre — no hay "cancelar", no hay "servicio al cliente" que lo recupere. Si pierdes tu <strong>llave privada</strong> (la contraseña maestra de tu cripto), pierdes acceso para siempre. Se estima que millones de bitcoins están perdidos para siempre porque sus dueños olvidaron las contraseñas.',
+        html: 'En el mundo del cripto, muchos errores no se pueden deshacer. Si mandas cripto a la dirección equivocada, se pierde para siempre — no hay "cancelar", no hay servicio al cliente que lo recupere.<br><br>Si tienes tu propia billetera (auto-custodia), la clave que protege todo es la <strong>frase semilla</strong> — esas 12 a 24 palabras especiales. Si olvidas la contraseña de tu billetera pero tienes la frase semilla, puedes recuperar todo en un dispositivo nuevo. Pero si pierdes la frase semilla, el acceso se pierde para siempre — no importa cuánta tecnología o cuántos abogados tengas. Se estima que millones de bitcoins están bloqueados para siempre porque sus dueños perdieron su frase semilla. <strong>Si usas Coinbase u otra plataforma, este riesgo no aplica</strong> — ellos gestionan las claves por ti.',
       },
       {
         type: 'heading',
