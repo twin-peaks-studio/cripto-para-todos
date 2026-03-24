@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import type { Lesson } from '@/lib/content/types'
 import LessonContent from '@/components/lessons/LessonContent'
 import QuizContainer from '@/components/quiz/QuizContainer'
+import { LESSONS } from '@/lib/content/lessons'
 import { useRouter } from 'next/navigation'
 
 interface LessonProgressRow {
@@ -31,6 +32,16 @@ export default function LessonPageClient({
 }: LessonPageClientProps) {
   const router = useRouter()
   const [view, setView] = useState<PageView>('lesson')
+
+  // Compute next destination after this lesson
+  const lessonIndex = LESSONS.findIndex(l => l.slug === lesson.slug)
+  const rawNext = lessonIndex >= 0 && lessonIndex < LESSONS.length - 1 ? LESSONS[lessonIndex + 1] : null
+  // After the last lesson, send them to the Glosario
+  const nextLesson = rawNext
+    ? { slug: rawNext.slug, title: rawNext.title, emoji: rawNext.emoji, href: `/leccion/${rawNext.slug}` }
+    : lessonIndex === LESSONS.length - 1
+      ? { slug: 'glosario', title: 'Glosario de palabras', emoji: '📖', href: '/glosario' }
+      : null
   const [reachedBottom, setReachedBottom] = useState(false)
   const [justPassed, setJustPassed] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
@@ -122,6 +133,7 @@ export default function LessonPageClient({
             questionCount={lesson.quizQuestionCount}
             xpReward={xpReward}
             currentXP={totalXP}
+            nextLesson={nextLesson}
             onComplete={(passed) => {
               if (passed) setJustPassed(true)
             }}

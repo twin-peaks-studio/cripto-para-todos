@@ -5,6 +5,13 @@ import QuizQuestion, { type Question } from './QuizQuestion'
 import { LessonCompleteAnimation } from './CelebrationAnimation'
 import { getLevelForXP, getNextLevel } from '@/lib/xp'
 
+interface NextLesson {
+  slug: string
+  title: string
+  emoji: string
+  href: string
+}
+
 interface QuizContainerProps {
   lessonSlug: string
   lessonTitle: string
@@ -12,6 +19,7 @@ interface QuizContainerProps {
   questionCount: number
   xpReward: number
   currentXP: number
+  nextLesson?: NextLesson | null
   onComplete: (passed: boolean, xpEarned: number) => void
   onReviewLesson: () => void
 }
@@ -25,6 +33,7 @@ export default function QuizContainer({
   questionCount,
   xpReward,
   currentXP,
+  nextLesson,
   onComplete,
   onReviewLesson,
 }: QuizContainerProps) {
@@ -228,15 +237,30 @@ export default function QuizContainer({
           )}
 
           <div className="space-y-3 mt-4 max-w-xs mx-auto">
+            {nextLesson ? (
+              <button
+                onClick={() => { window.location.href = nextLesson.href }}
+                className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
+              >
+                {nextLesson.emoji} {nextLesson.title} →
+              </button>
+            ) : (
+              <button
+                onClick={() => { window.location.href = '/inicio' }}
+                className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
+              >
+                Volver al inicio →
+              </button>
+            )}
             <button
               onClick={() => { window.location.href = '/inicio' }}
-              className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
+              className="w-full text-brown-500 hover:text-brown-700 text-base font-medium py-3 transition-colors"
             >
-              Volver al inicio →
+              Volver al inicio
             </button>
             <button
               onClick={loadQuiz}
-              className="w-full text-brown-500 hover:text-brown-700 text-base font-medium py-3 transition-colors"
+              className="w-full text-brown-400 hover:text-brown-600 text-sm font-medium py-2 transition-colors"
             >
               🔄 Hacer el quiz otra vez
             </button>
