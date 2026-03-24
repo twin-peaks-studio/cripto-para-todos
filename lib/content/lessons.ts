@@ -55,7 +55,7 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Con las criptomonedas, <strong>tú eres el único dueño</strong> de tu dinero — siempre y cuando cuides bien tu contraseña. No depende de ningún banco. Si un banco tiene problemas, tu cripto no se ve afectado. Pero también hay una responsabilidad grande: si pierdes tu contraseña, nadie puede ayudarte a recuperar tu cripto.',
+        html: 'La mayoría de personas que empiezan con cripto lo hacen a través de una plataforma como <strong>Coinbase</strong> — y funciona igual que cualquier cuenta en internet: te registras con tu correo y una contraseña. Si olvidas tu contraseña, la recuperas por correo, igual que con tu banco en línea. La plataforma guarda tu cripto por ti.<br><br>A medida que aprendes más, quizás escuches sobre tener tu propia <strong>billetera o wallet</strong>. Eso es diferente: en ese caso, <em>tú</em> serías el responsable de una clave especial llamada <strong>frase semilla</strong>. Si la perdieras, nadie podría ayudarte a recuperarla. Pero como principiante usando Coinbase u otra plataforma conocida, no necesitas preocuparte por eso todavía.',
       },
       {
         type: 'warn',

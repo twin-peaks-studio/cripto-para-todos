@@ -11,7 +11,7 @@ interface LessonContentProps {
 
 export default function LessonContent({ blocks }: LessonContentProps) {
   return (
-    <div className="space-y-1">
+    <div className="space-y-6">
       {blocks.map((block, i) => {
         switch (block.type) {
           case 'paragraph':
