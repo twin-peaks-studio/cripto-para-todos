@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import type { ContentBlock } from '@/lib/content/types'
 import AnalogyBox from './AnalogyBox'
 import WarnBox from './WarnBox'
@@ -26,16 +26,15 @@ export default function LessonContent({ blocks, onOpeningAnswered }: LessonConte
   const firstBlock = blocks[0]
   const hasOpeningQuestion = firstBlock?.type === 'opening-question'
   const [openingDone, setOpeningDone] = useState(!hasOpeningQuestion)
-  const contentRef = useRef<HTMLDivElement>(null)
 
   const contentBlocks = hasOpeningQuestion ? blocks.slice(1) : blocks
 
   function handleContinue() {
     setOpeningDone(true)
     onOpeningAnswered?.()
-    // Scroll to content after state update paints
+    // Scroll to the very top of the page so the lesson title is visible
     setTimeout(() => {
-      contentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }, 50)
   }
 
@@ -51,7 +50,6 @@ export default function LessonContent({ blocks, onOpeningAnswered }: LessonConte
       )}
 
       {/* Main lesson content — revealed after opening question is answered */}
-      {openingDone && <div ref={contentRef} />}
       {openingDone && contentBlocks.map((block, i) => {
         switch (block.type) {
 
