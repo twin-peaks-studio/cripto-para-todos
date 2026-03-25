@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { QuickCheckOption } from '@/lib/content/types'
 
 interface QuickCheckProps {
@@ -10,9 +10,18 @@ interface QuickCheckProps {
 
 export default function QuickCheck({ question, options }: QuickCheckProps) {
   const [selected, setSelected] = useState<number | null>(null)
+  const feedbackRef = useRef<HTMLDivElement>(null)
 
   const answered = selected !== null
   const isCorrect = answered && options[selected].correct === true
+
+  function handleSelect(i: number) {
+    if (answered) return
+    setSelected(i)
+    setTimeout(() => {
+      feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }, 50)
+  }
 
   return (
     <div className="my-6 bg-cream-100 border-2 border-cream-300 rounded-3xl p-5">
@@ -45,7 +54,7 @@ export default function QuickCheck({ question, options }: QuickCheckProps) {
           return (
             <button
               key={i}
-              onClick={() => !answered && setSelected(i)}
+              onClick={() => handleSelect(i)}
               disabled={answered}
               className={btnClass}
             >
@@ -60,7 +69,7 @@ export default function QuickCheck({ question, options }: QuickCheckProps) {
       </div>
 
       {answered && (
-        <div className={`mt-4 rounded-2xl px-4 py-3 text-base leading-relaxed animate-pop-in ${
+        <div ref={feedbackRef} className={`mt-4 rounded-2xl px-4 py-3 text-base leading-relaxed animate-pop-in ${
           isCorrect
             ? 'bg-sage-100 text-sage-900 border border-sage-700/30'
             : 'bg-amber-50 text-amber-900 border border-amber-300'

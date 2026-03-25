@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { ScenarioChoice } from '@/lib/content/types'
 
 interface ScenarioProps {
@@ -10,6 +10,14 @@ interface ScenarioProps {
 
 export default function Scenario({ setup, choices }: ScenarioProps) {
   const [selected, setSelected] = useState<number | null>(null)
+  const revealRef = useRef<HTMLDivElement>(null)
+
+  function handleSelect(i: number) {
+    setSelected(i)
+    setTimeout(() => {
+      revealRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }, 50)
+  }
 
   return (
     <div className="my-6 bg-amber-50 border-2 border-amber-300 rounded-3xl p-5">
@@ -29,7 +37,7 @@ export default function Scenario({ setup, choices }: ScenarioProps) {
           {choices.map((choice, i) => (
             <button
               key={i}
-              onClick={() => setSelected(i)}
+              onClick={() => handleSelect(i)}
               className="w-full text-left px-4 py-3 rounded-2xl text-base font-medium bg-white text-brown-900 border-2 border-amber-200 hover:border-amber-400 hover:bg-amber-50 transition-all"
             >
               {choice.text}
@@ -37,7 +45,7 @@ export default function Scenario({ setup, choices }: ScenarioProps) {
           ))}
         </div>
       ) : (
-        <div className="animate-pop-in">
+        <div ref={revealRef} className="animate-pop-in">
           <div className="bg-white rounded-2xl border-2 border-amber-300 px-4 py-3 mb-3">
             <span className="text-sm text-amber-700 font-semibold block mb-1">Tu elección:</span>
             <span className="text-brown-900 text-base">{choices[selected].text}</span>

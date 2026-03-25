@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { OpeningQuestionOption } from '@/lib/content/types'
 
 interface OpeningQuestionProps {
@@ -11,6 +11,15 @@ interface OpeningQuestionProps {
 
 export default function OpeningQuestion({ question, options, onContinue }: OpeningQuestionProps) {
   const [selected, setSelected] = useState<number | null>(null)
+  const revealRef = useRef<HTMLDivElement>(null)
+
+  function handleSelect(i: number) {
+    setSelected(i)
+    // Scroll the revealed feedback + CTA into view after paint
+    setTimeout(() => {
+      revealRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }, 50)
+  }
 
   return (
     <div className="my-6 bg-teal-900 rounded-3xl p-6 text-white">
@@ -23,7 +32,7 @@ export default function OpeningQuestion({ question, options, onContinue }: Openi
         {options.map((opt, i) => (
           <button
             key={i}
-            onClick={() => setSelected(i)}
+            onClick={() => handleSelect(i)}
             className={`w-full text-left px-4 py-3 rounded-2xl text-base font-medium transition-all border-2 ${
               selected === i
                 ? 'bg-white text-teal-900 border-white'
@@ -36,7 +45,7 @@ export default function OpeningQuestion({ question, options, onContinue }: Openi
       </div>
 
       {selected !== null && (
-        <div className="mt-5 animate-pop-in">
+        <div ref={revealRef} className="mt-5 animate-pop-in">
           <div className="bg-teal-800 rounded-2xl px-4 py-3 text-teal-100 text-base leading-relaxed mb-4">
             {options[selected].response}
           </div>
