@@ -78,7 +78,7 @@ export default function QuickCheck({ question, options }: QuickCheckProps) {
           {options[selected].explanation}
         </div>
       )}
-      <div ref={cardBottomRef} />
+      <div ref={cardBottomRef} className="scroll-mb-6" />
     </div>
   )
 }

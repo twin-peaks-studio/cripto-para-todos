@@ -61,7 +61,7 @@ export default function Scenario({ setup, choices }: ScenarioProps) {
           </button>
         </div>
       )}
-      <div ref={cardBottomRef} />
+      <div ref={cardBottomRef} className="scroll-mb-6" />
     </div>
   )
 }

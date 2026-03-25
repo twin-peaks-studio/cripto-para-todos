@@ -58,8 +58,8 @@ export default function OpeningQuestion({ question, options, onContinue }: Openi
           </button>
         </div>
       )}
-      {/* Sentinel at the very bottom of the card — ensures full card is visible on scroll */}
-      <div ref={cardBottomRef} />
+      {/* Sentinel — scroll-mb adds breathing room so card bottom isn't flush with viewport edge */}
+      <div ref={cardBottomRef} className="scroll-mb-6" />
     </div>
   )
 }
