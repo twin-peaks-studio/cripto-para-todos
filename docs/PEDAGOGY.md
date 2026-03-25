@@ -359,6 +359,253 @@ The risk and scam lessons must preserve agency. Framing should be: "Aquí está 
 
 ---
 
+## Strategy 11: Interactive Block System (UX + Pedagogy)
+
+### The Core Problem with Passive Reading
+
+Every lesson currently follows the same pattern: paragraph → analogy → paragraph → table → video → quiz. The learner is a passive recipient throughout, then suddenly asked to retrieve information she never actively engaged with. This is the least effective learning mode known to educational psychology (Dunlosky et al. 2013 — re-reading rated "low utility").
+
+**The solution is not gamification. It is rhythm.**
+
+No more than 3–4 paragraphs of pure reading should appear without a moment that shifts the learner from passive to active — even for 10 seconds. This is called the **Receive → Engage → Receive → Engage** rhythm, and it should be the structural backbone of every lesson.
+
+### The Rhythm Principle
+
+```
+RECEIVE → ENGAGE → RECEIVE → ENGAGE → RECEIVE → ENGAGE
+(read)    (do)     (read)    (do)     (read)    (do)
+```
+
+"Engage" does not always mean answering a question. It means anything that requires the learner to DO something: predict, choose, reflect, respond, or decide. Even a 10-second tap-to-reveal creates an active encoding moment stronger than a paragraph read passively.
+
+### Design Principles for Interactions
+
+- **Warm, not gamified.** Interactions should feel like a conversation with a knowledgeable friend, not a game show. No points, timers, streaks, or scores within lessons.
+- **No penalty for wrong answers.** Every wrong-answer response should be encouraging and explanatory: "Buen intento — esto confunde a mucha gente. Lo que realmente pasa es..."
+- **Always resolve immediately.** The learner should never be left in doubt. Every interaction resolves with the correct understanding before the lesson continues.
+- **Mobile-first interaction design.** All interactions are tap-based, single-step, large touch targets. No drag-and-drop, no typing required (except optional self-reflect).
+- **Respectful of intelligence.** This audience is 40–65, educated in life experience. Interactions should feel substantive, not childish. The tone is always peer-to-peer, never teacher-to-student.
+
+### The 7 New Block Types
+
+---
+
+#### 1. `opening-question`
+**Pedagogical basis:** Pre-testing effect (g = 0.36 — attempting to answer before learning improves subsequent encoding); prior knowledge activation (andragogy — adults anchor new knowledge to existing experience).
+
+**What it does:** The very first thing the learner sees before any lesson content. A single question that surfaces existing beliefs or prior knowledge. No right or wrong answer. Requires a selection to continue. Each option shows a warm, personalized 1-sentence acknowledgment before the lesson begins.
+
+**When to use:** Every lesson, always first. The question should surface a belief the lesson will either confirm, correct, or expand.
+
+**Content spec:**
+```
+{
+  type: 'opening-question',
+  question: string,
+  options: Array<{
+    text: string,
+    response: string  // warm acknowledgment shown after selection
+  }>
+}
+```
+
+**Example:**
+```
+Question: "¿Qué es lo primero que piensas cuando escuchas 'Bitcoin'?"
+Options:
+  "Es muy arriesgado" → "Eso es muy común. Esta lección te va a dar
+                          más contexto para evaluar ese riesgo."
+  "No sé qué es" → "Perfecto punto de partida. Vamos paso a paso."
+  "La gente gana mucho dinero" → "Eso es parte de la historia —
+                                   y también hay otra parte.
+                                   Vamos a ver las dos."
+```
+
+---
+
+#### 2. `quick-check`
+**Pedagogical basis:** Retrieval practice (g = 0.50–0.61); mid-content retrieval checkpoints are more effective than end-only quizzes; elaborated feedback (d = 0.73).
+
+**What it does:** A single question embedded directly after the concept it tests. Not graded. No fail state. Shows correct answer + 1-sentence explanation immediately. Feedback references the analogy from the lesson where possible.
+
+**When to use:** After each major concept section within a lesson. Target: 2–3 per lesson. Always placed immediately after the content it tests, not at the end.
+
+**Content spec:**
+```
+{
+  type: 'quick-check',
+  question: string,
+  options: Array<{
+    text: string,
+    correct?: boolean,
+    explanation: string  // shown after any selection
+  }>
+}
+```
+
+**Rules:**
+- Only one correct answer
+- Wrong answer explanation must reference the lesson analogy when possible
+- Correct answer explanation adds one piece of information beyond what was in the text
+- Never say "Incorrecto" — use "No exactamente..." or "Casi — ..."
+
+---
+
+#### 3. `scenario`
+**Pedagogical basis:** Scenario-based transfer learning (d = 0.40 for transfer vs. recall-only); social learning (named characters make situations concrete and personally relevant).
+
+**What it does:** A brief real-life situation involving a named character. The learner chooses what she would do or advise. Both/all paths lead to useful learning — there is no "you lose" branch. Every path resolves with an explanation and then continues to the lesson.
+
+**When to use:** When a concept has a direct real-world application decision. Best placed after 2–3 concepts have been introduced, so the scenario can integrate multiple ideas. Target: 1–2 per lesson.
+
+**Content spec:**
+```
+{
+  type: 'scenario',
+  setup: string,        // the situation description
+  choices: Array<{
+    text: string,
+    consequence: string  // what happens + why, shown after selection
+  }>
+}
+```
+
+**Rules:**
+- Use recurring character names from the lesson analogies (Rosa, Carmen, María)
+- Every choice must be respectfully treated — even the wrong choice gets an explanatory response, not a rebuke
+- Consequence text should be 2–3 sentences max
+- After reading consequence, learner taps "Continuar" to proceed
+
+---
+
+#### 4. `misconception`
+**Pedagogical basis:** Conceptual change theory — presenting correct information alone does not replace wrong prior beliefs; the wrong belief must be named and directly confronted first (Chi 2008; Vosniadou 2013).
+
+**What it does:** A visually distinct block that explicitly names a common wrong belief and corrects it. Not a question — a clear "myth vs. reality" statement. Especially critical for financial literacy, where folk theories are deeply held and dangerous.
+
+**When to use:** Before or immediately after any concept that commonly activates a wrong prior belief. Every lesson should have at least 1. The scam lesson should have several.
+
+**Content spec:**
+```
+{
+  type: 'misconception',
+  myth: string,     // "Mucha gente cree que..."
+  reality: string   // "En realidad..."
+}
+```
+
+**Visual design:** Two-column or two-row format. Myth in a muted red/orange tone with ✗. Reality in teal/green with ✓. Visually memorable so it stands out from regular paragraph reading.
+
+---
+
+#### 5. `reveal`
+**Pedagogical basis:** Curiosity gap effect — posing a question before providing the answer creates a motivational state that improves encoding of the answer (Loewenstein 1994); prediction + feedback learning effect.
+
+**What it does:** Shows a question or prompt, requires a single tap to reveal the answer. The learner is implicitly invited to form a prediction before tapping. The reveal moment creates a stronger memory trace than reading the fact directly in a paragraph.
+
+**When to use:** For surprising facts, key statistics, or "the answer to the question you've been wondering about" moments. Best for numerical facts or counterintuitive truths. Target: 1 per lesson.
+
+**Content spec:**
+```
+{
+  type: 'reveal',
+  prompt: string,   // the question or "do you know...?" setup
+  answer: string    // revealed on tap, can include HTML
+}
+```
+
+---
+
+#### 6. `bridge`
+**Pedagogical basis:** Advance organizers (Ausubel 1960 — connecting new knowledge to meaningful goals improves retention 15–20%); andragogy principle of immediate relevance — adults need to know "why am I learning this?" before encoding happens optimally.
+
+**What it does:** A short block at the end of each lesson that explicitly connects what was just learned to the central course question: understanding crypto/Bitcoin as an investment asset. Not interactive — but pedagogically essential. Answers "¿para qué me sirve esto?" before the learner asks it.
+
+**When to use:** Always at the end of every lesson, immediately before the video and quiz. One per lesson, every lesson.
+
+**Content spec:**
+```
+{
+  type: 'bridge',
+  html: string  // 2–4 sentences connecting lesson concept to investment goal
+}
+```
+
+**Rules:**
+- Must reference a specific concept from the lesson just completed
+- Must explicitly connect forward to the investment understanding goal
+- Tone: warm and forward-looking, not a summary ("Ahora entiendes X. Eso importa para la pregunta central porque...")
+- Never just a lesson summary — must answer "why does this matter for investing?"
+
+---
+
+#### 7. `self-reflect`
+**Pedagogical basis:** Self-explanation effect (Chi et al. 1994 — generating your own explanation is dramatically more effective for conceptual retention than re-reading); elaborative interrogation.
+
+**What it does:** An optional reflection prompt. A free-text area that is never submitted, never evaluated, never seen by anyone. Just the act of attempting to generate an explanation in the learner's own words is the learning event. Can be skipped with a "Continuar" button.
+
+**When to use:** After the most complex analogy or concept in a lesson. Never more than once per lesson. Always optional. Best framing: "¿Cómo le explicarías esto a una amiga?"
+
+**Content spec:**
+```
+{
+  type: 'self-reflect',
+  prompt: string  // the reflection question
+}
+```
+
+**Rules:**
+- Always optional — prominent "Continuar sin responder" button
+- Explicit privacy note: "(Nadie va a leer esto — es solo para ti)"
+- Never use language that implies the learner should know the answer
+- The text area should be low-pressure: placeholder text like "Escribe lo que se te ocurra..."
+
+---
+
+### Standard Lesson Template
+
+Every lesson should follow this structural template:
+
+```
+1. opening-question        ← activates prior knowledge
+2. paragraph (relevance hook)  ← answers "¿para qué me sirve esto?"
+3. [content section 1]
+   - paragraph(s)
+   - analogy
+   - quick-check OR reveal
+4. [content section 2]
+   - misconception (if applicable)
+   - paragraph(s)
+   - analogy
+   - scenario
+5. [content section 3]
+   - paragraph(s)
+   - warn/info boxes
+   - self-reflect (optional, for most complex concept)
+6. bridge               ← connects to investment goal
+7. video
+```
+
+**Golden rule:** No more than 3–4 paragraphs of pure reading without one interactive element.
+
+---
+
+### Updated Pedagogy Checklist for Content Changes
+
+When adding or editing any lesson content block, also verify:
+
+- [ ] Does the lesson open with an `opening-question` that activates prior beliefs?
+- [ ] Is there a personal relevance hook ("¿para qué me sirve esto?") in the first paragraph?
+- [ ] Are there 2–3 `quick-check` blocks placed immediately after the concepts they test?
+- [ ] Is there at least 1 `scenario` block that forces a real-world application decision?
+- [ ] Is there at least 1 `misconception` block for the most commonly held wrong belief about this topic?
+- [ ] Is there a `bridge` block at the end connecting this lesson to the investment understanding goal?
+- [ ] Does the lesson follow the Receive → Engage → Receive → Engage rhythm?
+- [ ] Are all wrong-answer responses encouraging and explanatory (not "Incorrecto")?
+- [ ] Is every interactive element mobile-friendly (tap-based, large targets)?
+
+---
+
 ## Pedagogy Checklist for Content Changes
 
 Before adding, editing, or restructuring any lesson, quiz, or progression element, verify against this checklist:

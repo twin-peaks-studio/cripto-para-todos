@@ -8,6 +8,15 @@ export type BlockType =
   | 'table'
   | 'video'
   | 'scam-entry'
+  | 'opening-question'
+  | 'quick-check'
+  | 'scenario'
+  | 'misconception'
+  | 'reveal'
+  | 'bridge'
+  | 'self-reflect'
+
+// ─── Existing blocks ────────────────────────────────────────────────────────
 
 export interface ParagraphBlock {
   type: 'paragraph'
@@ -64,6 +73,66 @@ export interface ScamEntryBlock {
   redFlags: string[]
 }
 
+// ─── Interactive blocks (Strategy 11) ───────────────────────────────────────
+
+export interface OpeningQuestionOption {
+  text: string
+  response: string // warm acknowledgment shown after selection
+}
+
+export interface OpeningQuestionBlock {
+  type: 'opening-question'
+  question: string
+  options: OpeningQuestionOption[]
+}
+
+export interface QuickCheckOption {
+  text: string
+  correct?: boolean
+  explanation: string // shown after any selection
+}
+
+export interface QuickCheckBlock {
+  type: 'quick-check'
+  question: string
+  options: QuickCheckOption[]
+}
+
+export interface ScenarioChoice {
+  text: string
+  consequence: string // explanation shown after selection
+}
+
+export interface ScenarioBlock {
+  type: 'scenario'
+  setup: string
+  choices: ScenarioChoice[]
+}
+
+export interface MisconceptionBlock {
+  type: 'misconception'
+  myth: string    // "Mucha gente cree que..."
+  reality: string // "En realidad..."
+}
+
+export interface RevealBlock {
+  type: 'reveal'
+  prompt: string  // the question or setup
+  answer: string  // revealed on tap, supports HTML
+}
+
+export interface BridgeBlock {
+  type: 'bridge'
+  html: string    // 2–4 sentences connecting lesson to investment goal
+}
+
+export interface SelfReflectBlock {
+  type: 'self-reflect'
+  prompt: string  // reflection question
+}
+
+// ─── Union type ─────────────────────────────────────────────────────────────
+
 export type ContentBlock =
   | ParagraphBlock
   | HeadingBlock
@@ -74,6 +143,13 @@ export type ContentBlock =
   | TableBlock
   | VideoBlock
   | ScamEntryBlock
+  | OpeningQuestionBlock
+  | QuickCheckBlock
+  | ScenarioBlock
+  | MisconceptionBlock
+  | RevealBlock
+  | BridgeBlock
+  | SelfReflectBlock
 
 export interface Lesson {
   slug: string

@@ -1,19 +1,50 @@
+'use client'
+
+import { useState } from 'react'
 import type { ContentBlock } from '@/lib/content/types'
 import AnalogyBox from './AnalogyBox'
 import WarnBox from './WarnBox'
 import InfoBox from './InfoBox'
 import VideoEmbed from './VideoEmbed'
 import ScamEntry from './ScamEntry'
+import OpeningQuestion from './OpeningQuestion'
+import QuickCheck from './QuickCheck'
+import Scenario from './Scenario'
+import Misconception from './Misconception'
+import Reveal from './Reveal'
+import Bridge from './Bridge'
+import SelfReflect from './SelfReflect'
 
 interface LessonContentProps {
   blocks: ContentBlock[]
 }
 
 export default function LessonContent({ blocks }: LessonContentProps) {
+  // If the lesson starts with an opening-question, gate the rest of the
+  // content behind it until the learner has made a selection.
+  const firstBlock = blocks[0]
+  const hasOpeningQuestion = firstBlock?.type === 'opening-question'
+  const [openingDone, setOpeningDone] = useState(!hasOpeningQuestion)
+
+  const contentBlocks = hasOpeningQuestion ? blocks.slice(1) : blocks
+
   return (
     <div className="space-y-6">
-      {blocks.map((block, i) => {
+      {/* Opening question gate */}
+      {hasOpeningQuestion && firstBlock.type === 'opening-question' && (
+        <OpeningQuestion
+          question={firstBlock.question}
+          options={firstBlock.options}
+          onContinue={() => setOpeningDone(true)}
+        />
+      )}
+
+      {/* Main lesson content — revealed after opening question is answered */}
+      {openingDone && contentBlocks.map((block, i) => {
         switch (block.type) {
+
+          // ── Existing blocks ──────────────────────────────────────────────
+
           case 'paragraph':
             return (
               <p
@@ -115,6 +146,54 @@ export default function LessonContent({ blocks }: LessonContentProps) {
                 redFlags={block.redFlags}
               />
             )
+
+          // ── Interactive blocks ───────────────────────────────────────────
+
+          case 'opening-question':
+            // Handled above as the gate — skip if it appears mid-content
+            return null
+
+          case 'quick-check':
+            return (
+              <QuickCheck
+                key={i}
+                question={block.question}
+                options={block.options}
+              />
+            )
+
+          case 'scenario':
+            return (
+              <Scenario
+                key={i}
+                setup={block.setup}
+                choices={block.choices}
+              />
+            )
+
+          case 'misconception':
+            return (
+              <Misconception
+                key={i}
+                myth={block.myth}
+                reality={block.reality}
+              />
+            )
+
+          case 'reveal':
+            return (
+              <Reveal
+                key={i}
+                prompt={block.prompt}
+                answer={block.answer}
+              />
+            )
+
+          case 'bridge':
+            return <Bridge key={i} html={block.html} />
+
+          case 'self-reflect':
+            return <SelfReflect key={i} prompt={block.prompt} />
 
           default:
             return null

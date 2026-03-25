@@ -70,4 +70,4 @@ video       — embedId + title + channel
 scam-entry  — name + emoji + how + analogy + redFlags
 ```
 
-A new `misconception` block type is planned (see PEDAGOGY.md P1 backlog) — implement when adding misconception content.
+New interactive blocks: opening-question, quick-check, scenario, misconception, reveal, bridge, self-reflect — see docs/PEDAGOGY.md Strategy 11 for full specs and usage rules.

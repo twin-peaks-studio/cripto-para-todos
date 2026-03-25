@@ -14,27 +14,80 @@ export const LESSONS: Lesson[] = [
     xp: 100,
     quizQuestionCount: 5,
     content: [
+
+      // ── Activación ──────────────────────────────────────────────────────
+      {
+        type: 'opening-question',
+        question: '¿Qué es lo primero que piensas cuando escuchas la palabra "Bitcoin"?',
+        options: [
+          {
+            text: 'Es muy arriesgado o es para criminales',
+            response: 'Eso es lo más común. Esta lección te da contexto real para evaluar ese riesgo — y separar los mitos de la realidad.',
+          },
+          {
+            text: 'No sé exactamente qué es',
+            response: 'Perfecto punto de partida. Vamos desde el principio, sin asumir nada.',
+          },
+          {
+            text: 'La gente gana mucho dinero con eso',
+            response: 'Eso es parte de la historia — y también hay otra parte importante. Esta lección te muestra las dos.',
+          },
+          {
+            text: 'Un familiar o amigo me habló de eso',
+            response: 'Muy común. Al terminar esta lección vas a poder tener esa conversación con mucho más contexto.',
+          },
+        ],
+      },
+
+      // ── Sección 1: ¿Qué es? ─────────────────────────────────────────────
+      {
+        type: 'paragraph',
+        html: 'Cada vez más personas — incluyendo muchas en América Latina — buscan formas de proteger sus ahorros frente al alza de precios, la inestabilidad de monedas locales, o simplemente quieren entender de qué habla todo el mundo. Esta lección te da el lenguaje para entender qué es el cripto, antes de decidir si es algo para ti.',
+      },
       {
         type: 'paragraph',
         html: 'Una <strong>criptomoneda</strong> es dinero que existe solo en forma digital — no hay billetes ni monedas físicas que puedas tocar. No lo controla ningún banco ni ningún gobierno. En cambio, funciona gracias a una tecnología llamada <strong>blockchain</strong>.',
       },
       {
+        type: 'reveal',
+        prompt: '¿Quién controla las reglas y el precio de Bitcoin?',
+        answer: '<strong>Nadie.</strong> No hay banco central ni gobierno que lo controle. Las reglas están escritas en el código y nadie puede cambiarlas. El precio lo determinan millones de personas comprando y vendiendo en todo el mundo — igual que el precio del oro o de cualquier cosa que la gente valora.',
+      },
+      {
         type: 'analogy',
         label: '💡 Piénsalo así — el cuaderno compartido',
-        html: 'Imagina que en tu vecindario todos llevan un cuaderno donde anotan quién le pagó a quién. Cuando Rosa le paga $20 a Carmen, todos en el vecindario lo anotan en su cuaderno al mismo tiempo. Nadie puede borrar ni cambiar un pago porque <strong>todos tienen una copia idéntica</strong>. Si alguien intenta hacer trampa y cambiar una anotación, el resto del vecindario lo detecta de inmediato. Eso es exactamente cómo funciona el blockchain — pero en lugar de un vecindario, son millones de computadoras en todo el mundo.',
+        html: 'Imagina que en tu vecindario todos llevan un cuaderno donde anotan quién le pagó a quién. Cuando Rosa le paga $20 a Carmen, <em>todos</em> en el vecindario lo anotan en su cuaderno al mismo tiempo. Nadie puede borrar ni cambiar un pago porque <strong>todos tienen una copia idéntica</strong>. Si alguien intenta hacer trampa y cambiar una anotación, el resto del vecindario lo detecta de inmediato. Eso es exactamente cómo funciona el blockchain — pero en lugar de un vecindario, son millones de computadoras en todo el mundo.',
       },
       {
         type: 'paragraph',
         html: 'El blockchain es un registro digital compartido por miles de computadoras al mismo tiempo, en todo el mundo. Nadie lo controla solo — es como si fuera propiedad de todos y de nadie al mismo tiempo. Cada transacción queda grabada para siempre y nadie puede borrarla ni falsificarla.',
       },
       {
-        type: 'paragraph',
-        html: 'El blockchain es público — cualquier persona puede ver las transacciones. Pero no se ven los nombres de las personas, solo números de cuenta (como un apodo secreto). Es <strong>transparente y privado al mismo tiempo</strong>.',
+        type: 'quick-check',
+        question: '¿Verdadero o falso? Si alguien tuviera suficiente dinero, podría cambiar una transacción en el blockchain.',
+        options: [
+          {
+            text: 'Verdadero — con suficiente poder se puede todo',
+            explanation: 'No exactamente. Como todos tienen una copia idéntica, cambiar una transacción requeriría cambiar las copias de millones de computadoras al mismo tiempo — prácticamente imposible. Eso es lo que hace al blockchain tan seguro.',
+          },
+          {
+            text: 'Falso — todos tienen una copia idéntica',
+            correct: true,
+            explanation: 'Correcto. Cambiar una sola copia no sirve de nada porque las otras millones de copias no coincidirían. Es como intentar falsificar un documento cuando todos los testigos del mundo tienen la copia original.',
+          },
+        ],
       },
+
+      // ── Sección 2: ¿Cómo se diferencia del dinero normal? ───────────────
       {
         type: 'heading',
         level: 2,
         text: '¿En qué se diferencia del dinero normal?',
+      },
+      {
+        type: 'misconception',
+        myth: 'El cripto es secreto y anónimo — nadie sabe quién hace qué transacción, por eso lo usan los criminales.',
+        reality: 'El blockchain es completamente público. Cualquier persona puede ver todas las transacciones. Lo que no se ve es el nombre — solo la dirección de código. Es más transparente que un banco, no menos. Por eso los investigadores y gobiernos han podido rastrear y recuperar fondos en casos de fraude.',
       },
       {
         type: 'table',
@@ -42,10 +95,10 @@ export const LESSONS: Lesson[] = [
         rows: [
           ['Lo controla el gobierno y los bancos', 'Nadie lo controla — es descentralizado'],
           ['Se puede imprimir más cuando se necesita', 'La cantidad está fija — no se puede fabricar más'],
-          ['Necesitas un banco para guardarlo', 'Tú eres tu propio banco'],
+          ['Necesitas un banco para guardarlo', 'Tú puedes ser tu propio banco'],
           ['Si el banco cierra, el gobierno lo protege (FDIC)', 'Sin protección del gobierno'],
           ['Valor relativamente estable día a día', 'Precio muy variable — puede subir o bajar mucho'],
-          ['Las transacciones son privadas (solo tu banco las ve)', 'Las transacciones son públicas (pero anónimas)'],
+          ['Las transacciones son privadas (solo tu banco las ve)', 'Las transacciones son públicas (pero sin nombres)'],
         ],
       },
       {
@@ -54,14 +107,54 @@ export const LESSONS: Lesson[] = [
         html: 'Cuando el correo electrónico llegó, muchos se preguntaron: "¿Para qué necesito esto si ya tengo correo físico?" Hoy en día, nadie manda cartas para comunicarse rápidamente. Las criptomonedas son parecidas al correo electrónico — son una forma de mover valor de una persona a otra, en cualquier parte del mundo, <strong>sin necesitar un intermediario</strong> (como un banco) que lo apruebe o que cobre comisión.',
       },
       {
+        type: 'scenario',
+        setup: 'Tu amiga Carmen está considerando abrir una cuenta en Coinbase para comprar sus primeros $50 de Bitcoin. Su hija le dice: "Mamá, no lo hagas — el cripto es para lavado de dinero."\n\n¿Qué es lo más importante que Carmen debería saber para responder a eso?',
+        choices: [
+          {
+            text: 'Que su hija tiene razón — el blockchain es secreto y los criminales lo usan mucho',
+            consequence: 'En realidad es lo contrario. El blockchain es completamente público — todas las transacciones son visibles para cualquier persona. Precisamente por eso los investigadores han podido rastrear y recuperar fondos en múltiples casos de fraude. El dinero en efectivo es mucho más difícil de rastrear que el cripto.',
+          },
+          {
+            text: 'Que el blockchain es público, pero el dinero en efectivo es más difícil de rastrear',
+            consequence: '¡Exacto! Las transacciones de cripto son públicas y rastreables, aunque no muestran nombres. Esto hace que el cripto sea menos opaco que el efectivo para fines ilegales. Lo importante para Carmen es entender los riesgos reales: la volatilidad del precio y la falta de protección del gobierno — no el anonimato.',
+          },
+          {
+            text: 'Que Coinbase es completamente segura porque está regulada',
+            consequence: 'Coinbase es una plataforma seria y regulada, pero "regulada" no significa que el gobierno garantice tu dinero si algo sale mal. A diferencia de un banco, el cripto en Coinbase no está asegurado por el FDIC. Carmen debe empezar con una cantidad pequeña que pueda permitirse perder.',
+          },
+        ],
+      },
+
+      // ── Sección 3: ¿Cómo lo guardo? ─────────────────────────────────────
+      {
+        type: 'heading',
+        level: 2,
+        text: '¿Cómo se guarda el cripto?',
+      },
+      {
         type: 'paragraph',
-        html: 'La mayoría de personas que empiezan con cripto lo hacen a través de una plataforma conocida como <strong>Coinbase</strong> o <strong>Kraken</strong>. Esto se llama una cuenta <em>custodial</em> — funciona igual que cualquier cuenta en internet: te registras con tu correo y una contraseña, y si la olvidas, la recuperas por correo. La plataforma guarda las claves de tu cripto por ti. <strong>Importante:</strong> a diferencia de un banco, tu cripto en estas plataformas no está asegurado por el gobierno — si la plataforma es hackeada o cierra, no hay garantía de recuperación.<br><br>A medida que aprendes más, quizás escuches sobre tener tu propia <strong>billetera o wallet</strong>. Eso es diferente — se llama <em>auto-custodia</em>. En ese caso, <em>tú</em> controlas una clave especial de 12 a 24 palabras llamada <strong>frase semilla</strong>. Quien tenga esas palabras tiene acceso total a tu cripto — y si las pierdes, nadie en el mundo puede ayudarte a recuperarlo. Como principiante, no necesitas llegar ahí todavía.',
+        html: 'La mayoría de personas que empiezan con cripto lo hacen a través de una plataforma como <strong>Coinbase</strong> o <strong>Kraken</strong>. Esto se llama una cuenta <em>custodial</em> — funciona como cualquier cuenta en internet: te registras con tu correo y contraseña, y si la olvidas, la recuperas por correo. La plataforma guarda las claves de tu cripto por ti. <strong>Importante:</strong> a diferencia de un banco, tu cripto en estas plataformas no está asegurado por el gobierno — si la plataforma es hackeada o cierra, no hay garantía de recuperación.',
+      },
+      {
+        type: 'paragraph',
+        html: 'A medida que aprendes más, quizás escuches sobre tener tu propia <strong>billetera o wallet</strong>. Eso es diferente — se llama <em>auto-custodia</em>. En ese caso, <em>tú</em> controlas una clave especial de 12 a 24 palabras llamada <strong>frase semilla</strong>. Quien tenga esas palabras tiene acceso total a tu cripto. Si las pierdes, nadie en el mundo puede ayudarte a recuperarlo. Como principiante, no necesitas llegar ahí todavía.',
+      },
+      {
+        type: 'self-reflect',
+        prompt: '¿Cuál es la diferencia entre tener cripto en Coinbase y tener tu propia billetera? Intenta explicarlo con tus propias palabras.',
       },
       {
         type: 'warn',
-        title: '⚠️ Importante recordar desde el principio',
-        html: 'El cripto puede subir y bajar mucho en poco tiempo. No es como tener dinero en el banco. <strong>Nunca inviertas dinero que no puedas permitirte perder completamente.</strong> Esta regla es la más importante de toda la guía.',
+        title: '⚠️ La regla más importante desde el principio',
+        html: 'El cripto puede subir y bajar mucho en poco tiempo. No es como tener dinero en el banco. <strong>Nunca inviertas dinero que no puedas permitirte perder completamente.</strong> Esta regla aparece en cada lección porque es la más importante de toda la guía.',
       },
+
+      // ── Puente ───────────────────────────────────────────────────────────
+      {
+        type: 'bridge',
+        html: 'Ahora entiendes la base: qué es el blockchain, por qué nadie lo controla, y cómo se guarda el cripto. Todo esto existe porque Bitcoin resolvió algo que ningún banco había podido hacer: crear dinero genuinamente <em>escaso</em> en el mundo digital. En la siguiente lección vas a entender exactamente por qué esa escasez es la razón principal por la que mucha gente ve a Bitcoin como una posible inversión — y también por qué otros no están de acuerdo.',
+      },
+
       {
         type: 'video',
         embedId: 'V9Kr2SujqHw',
