@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import type { Lesson } from '@/lib/content/types'
 import LessonContent from '@/components/lessons/LessonContent'
 import QuizContainer from '@/components/quiz/QuizContainer'
+import LessonHelper from '@/components/lessons/LessonHelper'
 import { LESSONS } from '@/lib/content/lessons'
 import { useRouter } from 'next/navigation'
 
@@ -65,7 +66,7 @@ export default function LessonPageClient({
   const alreadyPassed = lessonProgress?.quiz_passed === true || justPassed
 
   return (
-    <div>
+    <div className="pb-24">
       {/* Lesson header */}
       <div className="mb-6">
         <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-3 ${lesson.color} ${lesson.textColor}`}>
@@ -170,6 +171,9 @@ export default function LessonPageClient({
           />
         </div>
       )}
+
+      {/* Always-visible lesson helper — floating, present in both lesson and quiz views */}
+      <LessonHelper lessonSlug={lesson.slug} lessonTitle={lesson.title} />
     </div>
   )
 }
