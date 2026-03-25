@@ -39,7 +39,7 @@ export default function LessonContent({ blocks, onOpeningAnswered }: LessonConte
   }
 
   return (
-    <div className="space-y-6">
+    <div>
       {/* Opening question gate — hidden once answered */}
       {hasOpeningQuestion && !openingDone && firstBlock.type === 'opening-question' && (
         <OpeningQuestion
@@ -66,36 +66,53 @@ export default function LessonContent({ blocks, onOpeningAnswered }: LessonConte
 
           case 'heading':
             if (block.level === 2) {
+              // Section break: divider line above (except at the very top) + amber left accent
               return (
-                <h2
+                <div
                   key={i}
-                  className="font-display font-bold text-teal-900 text-2xl mt-8 mb-3 leading-snug"
+                  className={i > 0 ? 'mt-14 pt-8 border-t-2 border-cream-300 mb-1' : 'mt-6 mb-1'}
                 >
-                  {block.text}
-                </h2>
+                  <h2 className="font-display font-bold text-teal-900 text-2xl leading-snug pl-4 border-l-4 border-amber-400">
+                    {block.text}
+                  </h2>
+                </div>
               )
             }
             return (
               <h3
                 key={i}
-                className="font-display font-bold text-teal-800 text-xl mt-6 mb-2 leading-snug"
+                className="font-display font-bold text-teal-800 text-xl mt-8 mb-3 leading-snug"
               >
                 {block.text}
               </h3>
             )
 
+          // Callout boxes — prominent, needs breathing room
           case 'analogy':
-            return <AnalogyBox key={i} label={block.label} html={block.html} />
+            return (
+              <div key={i} className="my-8">
+                <AnalogyBox label={block.label} html={block.html} />
+              </div>
+            )
 
           case 'warn':
-            return <WarnBox key={i} title={block.title} html={block.html} />
+            return (
+              <div key={i} className="my-8">
+                <WarnBox title={block.title} html={block.html} />
+              </div>
+            )
 
+          // Info — lower visual weight, slightly tighter
           case 'info':
-            return <InfoBox key={i} html={block.html} />
+            return (
+              <div key={i} className="my-6">
+                <InfoBox html={block.html} />
+              </div>
+            )
 
           case 'checklist':
             return (
-              <ul key={i} className="my-5 space-y-3">
+              <ul key={i} className="my-6 space-y-3">
                 {block.items.map((item, j) => (
                   <li key={j} className="flex items-start gap-3 text-[1.05rem] text-brown-900">
                     <span className="w-6 h-6 rounded-full bg-sage-700 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
@@ -109,7 +126,7 @@ export default function LessonContent({ blocks, onOpeningAnswered }: LessonConte
 
           case 'table':
             return (
-              <div key={i} className="my-6 table-scroll">
+              <div key={i} className="my-8 table-scroll">
                 <table className="w-full border-collapse rounded-2xl overflow-hidden text-[1rem]">
                   <thead>
                     <tr className="bg-teal-900 text-white">
@@ -137,27 +154,29 @@ export default function LessonContent({ blocks, onOpeningAnswered }: LessonConte
 
           case 'video':
             return (
-              <VideoEmbed
-                key={i}
-                embedId={block.embedId}
-                title={block.title}
-                channel={block.channel}
-              />
+              <div key={i} className="my-8">
+                <VideoEmbed
+                  embedId={block.embedId}
+                  title={block.title}
+                  channel={block.channel}
+                />
+              </div>
             )
 
           case 'scam-entry':
             return (
-              <ScamEntry
-                key={i}
-                name={block.name}
-                emoji={block.emoji}
-                how={block.how}
-                analogy={block.analogy}
-                redFlags={block.redFlags}
-              />
+              <div key={i} className="my-8">
+                <ScamEntry
+                  name={block.name}
+                  emoji={block.emoji}
+                  how={block.how}
+                  analogy={block.analogy}
+                  redFlags={block.redFlags}
+                />
+              </div>
             )
 
-          // ── Interactive blocks ───────────────────────────────────────────
+          // ── Interactive blocks — most breathing room ──────────────────────
 
           case 'opening-question':
             // Handled above as the gate — skip if it appears mid-content
@@ -165,45 +184,57 @@ export default function LessonContent({ blocks, onOpeningAnswered }: LessonConte
 
           case 'quick-check':
             return (
-              <QuickCheck
-                key={i}
-                question={block.question}
-                options={block.options}
-              />
+              <div key={i} className="my-10">
+                <QuickCheck
+                  question={block.question}
+                  options={block.options}
+                />
+              </div>
             )
 
           case 'scenario':
             return (
-              <Scenario
-                key={i}
-                setup={block.setup}
-                choices={block.choices}
-              />
+              <div key={i} className="my-10">
+                <Scenario
+                  setup={block.setup}
+                  choices={block.choices}
+                />
+              </div>
             )
 
           case 'misconception':
             return (
-              <Misconception
-                key={i}
-                myth={block.myth}
-                reality={block.reality}
-              />
+              <div key={i} className="my-8">
+                <Misconception
+                  myth={block.myth}
+                  reality={block.reality}
+                />
+              </div>
             )
 
           case 'reveal':
             return (
-              <Reveal
-                key={i}
-                prompt={block.prompt}
-                answer={block.answer}
-              />
+              <div key={i} className="my-10">
+                <Reveal
+                  prompt={block.prompt}
+                  answer={block.answer}
+                />
+              </div>
             )
 
           case 'bridge':
-            return <Bridge key={i} html={block.html} />
+            return (
+              <div key={i} className="my-10">
+                <Bridge html={block.html} />
+              </div>
+            )
 
           case 'self-reflect':
-            return <SelfReflect key={i} prompt={block.prompt} />
+            return (
+              <div key={i} className="my-10">
+                <SelfReflect prompt={block.prompt} />
+              </div>
+            )
 
           default:
             return null

@@ -5,7 +5,7 @@ interface MisconceptionProps {
 
 export default function Misconception({ myth, reality }: MisconceptionProps) {
   return (
-    <div className="my-6 rounded-3xl overflow-hidden border-2 border-rose-200">
+    <div className="rounded-3xl overflow-hidden border-2 border-rose-200">
       <div className="bg-rose-50 px-5 py-4 flex gap-3 items-start">
         <span className="text-rose-500 font-bold text-lg mt-0.5 flex-shrink-0">✗</span>
         <div>

@@ -24,7 +24,7 @@ export default function QuickCheck({ question, options }: QuickCheckProps) {
   }
 
   return (
-    <div className="my-6 bg-cream-100 border-2 border-cream-300 rounded-3xl p-5">
+    <div className="bg-cream-100 border-2 border-cream-300 rounded-3xl p-5">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-lg">🧩</span>
         <span className="text-sm font-semibold text-brown-700 uppercase tracking-wide">

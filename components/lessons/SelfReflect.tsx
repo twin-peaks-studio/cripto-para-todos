@@ -12,7 +12,7 @@ export default function SelfReflect({ prompt }: SelfReflectProps) {
 
   if (done) {
     return (
-      <div className="my-6 bg-purple-50 border-2 border-purple-200 rounded-3xl px-5 py-4 flex items-center gap-3">
+      <div className="bg-purple-50 border-2 border-purple-200 rounded-3xl px-5 py-4 flex items-center gap-3">
         <span className="text-2xl">✨</span>
         <p className="text-purple-900 text-base font-medium">
           {text.trim()
@@ -24,7 +24,7 @@ export default function SelfReflect({ prompt }: SelfReflectProps) {
   }
 
   return (
-    <div className="my-6 bg-purple-50 border-2 border-purple-200 rounded-3xl p-5">
+    <div className="bg-purple-50 border-2 border-purple-200 rounded-3xl p-5">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-lg">✍️</span>
         <span className="text-sm font-semibold text-purple-700 uppercase tracking-wide">

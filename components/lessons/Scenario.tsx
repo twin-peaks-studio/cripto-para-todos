@@ -20,7 +20,7 @@ export default function Scenario({ setup, choices }: ScenarioProps) {
   }
 
   return (
-    <div className="my-6 bg-amber-50 border-2 border-amber-300 rounded-3xl p-5">
+    <div className="bg-amber-50 border-2 border-amber-300 rounded-3xl p-5">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-lg">🤔</span>
         <span className="text-sm font-semibold text-amber-700 uppercase tracking-wide">

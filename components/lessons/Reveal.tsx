@@ -11,7 +11,7 @@ export default function Reveal({ prompt, answer }: RevealProps) {
   const [revealed, setRevealed] = useState(false)
 
   return (
-    <div className="my-6 bg-blue-50 border-2 border-blue-200 rounded-3xl p-5">
+    <div className="bg-blue-50 border-2 border-blue-200 rounded-3xl p-5">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-lg">💭</span>
         <span className="text-sm font-semibold text-blue-700 uppercase tracking-wide">
