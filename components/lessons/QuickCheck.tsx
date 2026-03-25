@@ -10,7 +10,7 @@ interface QuickCheckProps {
 
 export default function QuickCheck({ question, options }: QuickCheckProps) {
   const [selected, setSelected] = useState<number | null>(null)
-  const feedbackRef = useRef<HTMLDivElement>(null)
+  const cardBottomRef = useRef<HTMLDivElement>(null)
 
   const answered = selected !== null
   const isCorrect = answered && options[selected].correct === true
@@ -19,7 +19,7 @@ export default function QuickCheck({ question, options }: QuickCheckProps) {
     if (answered) return
     setSelected(i)
     setTimeout(() => {
-      feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      cardBottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
     }, 50)
   }
 
@@ -69,7 +69,7 @@ export default function QuickCheck({ question, options }: QuickCheckProps) {
       </div>
 
       {answered && (
-        <div ref={feedbackRef} className={`mt-4 rounded-2xl px-4 py-3 text-base leading-relaxed animate-pop-in ${
+        <div className={`mt-4 rounded-2xl px-4 py-3 text-base leading-relaxed animate-pop-in ${
           isCorrect
             ? 'bg-sage-100 text-sage-900 border border-sage-700/30'
             : 'bg-amber-50 text-amber-900 border border-amber-300'
@@ -78,6 +78,7 @@ export default function QuickCheck({ question, options }: QuickCheckProps) {
           {options[selected].explanation}
         </div>
       )}
+      <div ref={cardBottomRef} />
     </div>
   )
 }

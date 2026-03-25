@@ -10,12 +10,12 @@ interface ScenarioProps {
 
 export default function Scenario({ setup, choices }: ScenarioProps) {
   const [selected, setSelected] = useState<number | null>(null)
-  const revealRef = useRef<HTMLDivElement>(null)
+  const cardBottomRef = useRef<HTMLDivElement>(null)
 
   function handleSelect(i: number) {
     setSelected(i)
     setTimeout(() => {
-      revealRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      cardBottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
     }, 50)
   }
 
@@ -45,7 +45,7 @@ export default function Scenario({ setup, choices }: ScenarioProps) {
           ))}
         </div>
       ) : (
-        <div ref={revealRef} className="animate-pop-in">
+        <div className="animate-pop-in">
           <div className="bg-white rounded-2xl border-2 border-amber-300 px-4 py-3 mb-3">
             <span className="text-sm text-amber-700 font-semibold block mb-1">Tu elección:</span>
             <span className="text-brown-900 text-base">{choices[selected].text}</span>
@@ -61,6 +61,7 @@ export default function Scenario({ setup, choices }: ScenarioProps) {
           </button>
         </div>
       )}
+      <div ref={cardBottomRef} />
     </div>
   )
 }

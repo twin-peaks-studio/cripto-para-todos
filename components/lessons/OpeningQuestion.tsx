@@ -11,13 +11,14 @@ interface OpeningQuestionProps {
 
 export default function OpeningQuestion({ question, options, onContinue }: OpeningQuestionProps) {
   const [selected, setSelected] = useState<number | null>(null)
-  const revealRef = useRef<HTMLDivElement>(null)
+  const cardBottomRef = useRef<HTMLDivElement>(null)
 
   function handleSelect(i: number) {
     setSelected(i)
-    // Scroll the revealed feedback + CTA into view after paint
+    // Scroll to the sentinel at the very bottom of the card so the full
+    // card container (including padding + rounded corners) is visible
     setTimeout(() => {
-      revealRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      cardBottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
     }, 50)
   }
 
@@ -45,7 +46,7 @@ export default function OpeningQuestion({ question, options, onContinue }: Openi
       </div>
 
       {selected !== null && (
-        <div ref={revealRef} className="mt-5 animate-pop-in">
+        <div className="mt-5 animate-pop-in">
           <div className="bg-teal-800 rounded-2xl px-4 py-3 text-teal-100 text-base leading-relaxed mb-4">
             {options[selected].response}
           </div>
@@ -57,6 +58,8 @@ export default function OpeningQuestion({ question, options, onContinue }: Openi
           </button>
         </div>
       )}
+      {/* Sentinel at the very bottom of the card — ensures full card is visible on scroll */}
+      <div ref={cardBottomRef} />
     </div>
   )
 }
