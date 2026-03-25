@@ -94,19 +94,38 @@ export default function LessonPageClient({
             </h2>
             <p className="text-brown-700 text-base mb-5 leading-relaxed">
               {alreadyPassed
-                ? 'Ya completaste esta lección. Puedes hacer el quiz de nuevo para practicar con preguntas nuevas.'
+                ? nextLesson
+                  ? 'Ya completaste esta lección. Continúa con la siguiente o practica el quiz de nuevo.'
+                  : 'Ya completaste esta lección. Puedes hacer el quiz de nuevo para practicar con preguntas nuevas.'
                 : reachedBottom
                 ? `Ahora demuestra lo que aprendiste. Necesitas responder bien ${Math.ceil(lesson.quizQuestionCount * 0.8)} de ${lesson.quizQuestionCount} preguntas para completar la lección.`
                 : 'Lee toda la lección y luego podrás hacer el quiz.'}
             </p>
 
             <div className="space-y-3">
-              <button
-                onClick={() => { setView('quiz'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-                className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
-              >
-                {alreadyPassed ? '🔄 Hacer el quiz otra vez' : '🧠 Hacer el quiz →'}
-              </button>
+              {alreadyPassed && nextLesson ? (
+                <>
+                  <button
+                    onClick={() => router.push(nextLesson.href)}
+                    className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
+                  >
+                    {nextLesson.emoji} {nextLesson.title} →
+                  </button>
+                  <button
+                    onClick={() => { setView('quiz'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                    className="w-full text-brown-500 hover:text-brown-700 text-base font-medium py-3 transition-colors"
+                  >
+                    🔄 Hacer el quiz otra vez
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => { setView('quiz'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                  className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
+                >
+                  {alreadyPassed ? '🔄 Hacer el quiz otra vez' : '🧠 Hacer el quiz →'}
+                </button>
+              )}
 
               <button
                 onClick={() => router.push('/inicio')}
