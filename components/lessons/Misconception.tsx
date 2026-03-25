@@ -15,7 +15,7 @@ export default function Misconception({ myth, reality }: MisconceptionProps) {
           <p className="text-rose-900 text-base leading-relaxed">{myth}</p>
         </div>
       </div>
-      <div className="bg-sage-50 px-5 py-4 flex gap-3 items-start border-t-2 border-rose-200">
+      <div className="bg-sage-100 px-5 py-4 flex gap-3 items-start border-t-2 border-rose-200">
         <span className="text-sage-700 font-bold text-lg mt-0.5 flex-shrink-0">✓</span>
         <div>
           <div className="text-xs font-bold text-sage-700 uppercase tracking-wide mb-1">

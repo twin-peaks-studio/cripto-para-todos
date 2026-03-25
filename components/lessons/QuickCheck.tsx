@@ -18,7 +18,7 @@ export default function QuickCheck({ question, options }: QuickCheckProps) {
     <div className="my-6 bg-cream-100 border-2 border-cream-300 rounded-3xl p-5">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-lg">🧩</span>
-        <span className="text-sm font-semibold text-brown-600 uppercase tracking-wide">
+        <span className="text-sm font-semibold text-brown-700 uppercase tracking-wide">
           Comprueba lo que aprendiste
         </span>
       </div>

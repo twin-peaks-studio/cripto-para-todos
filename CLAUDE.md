@@ -1,5 +1,33 @@
 # Claude Instructions — Cripto Para Todos
 
+## Design System Guardrail (MANDATORY)
+
+**Any time you are asked to make changes involving:**
+- Creating or modifying any UI component (`components/**/*.tsx`)
+- Editing lesson block components (`components/lessons/*.tsx`)
+- Changing any color, spacing, border, radius, shadow, or typography class
+- Adding new visual states (hover, focus, selected, disabled, error, success)
+- Building new content block types
+- Any CSS changes in `app/globals.css` or `tailwind.config.ts`
+
+**You MUST:**
+1. Read `docs/DESIGN_SYSTEM.md` before planning or writing any code
+2. Only use color tokens defined in `tailwind.config.ts` — never arbitrary hex values
+3. Follow the exact border-radius rules: `rounded-3xl` outer containers, `rounded-2xl` inner elements
+4. Always use `border-2` (never `border` or `border-4`) for card borders
+5. Verify the component surface color matches the established system (Section 8 of DESIGN_SYSTEM.md)
+6. Never apply `lesson-prose` to components with dark (teal-900/teal-800) backgrounds
+7. Check Section 12 (Do/Don't) before finalizing any component
+
+**When adding new components:**
+- Follow the eyebrow label pattern (Section 13)
+- Confirm all Tailwind tokens used actually exist in `tailwind.config.ts`
+- Maintain the 44px minimum touch target (global in globals.css)
+
+This is non-negotiable. A wrong color token silently produces no output (Tailwind purges it). An unused or wrong token looks identical in the editor but breaks in production.
+
+---
+
 ## Pedagogy Guardrail (MANDATORY)
 
 **Any time you are asked to make changes involving:**
@@ -58,16 +86,30 @@ A crypto financial literacy web app for Spanish-speaking women ages 40–65. Beg
 - `lib/xp.ts` — XP level definitions
 
 ## Content Block Types (for lessons.ts)
+
+### Static blocks
 ```
-paragraph   — html string (supports <strong>, <em>)
-heading     — level 2 or 3, text string
-analogy     — label + html (the "Piénsalo así" boxes)
-warn        — title + html (amber warning boxes)
-info        — html (teal info boxes)
-checklist   — items array of strings
-table       — headers array + rows array of arrays
-video       — embedId + title + channel
-scam-entry  — name + emoji + how + analogy + redFlags
+paragraph      — html string (supports <strong>, <em>)
+heading        — level 2 or 3, text string
+analogy        — label? + html → amber card "💡 Piénsalo así"
+warn           — title + html → rose card (danger/scam alerts)
+info           — html → teal-50 card (supplementary info)
+checklist      — items: string[] → sage checkmarks
+table          — headers: string[] + rows: string[][] → overflow-scrollable
+video          — embedId + title + channel → YouTube embed
+scam-entry     — name + emoji + how + analogy + redFlags
 ```
 
-New interactive blocks: opening-question, quick-check, scenario, misconception, reveal, bridge, self-reflect — see docs/PEDAGOGY.md Strategy 11 for full specs and usage rules.
+### Interactive blocks (7 types)
+```
+opening-question — question + options[{text, response}] → dark teal gate card; ALWAYS first block
+quick-check      — question + options[{text, correct?, explanation}] → cream quiz card
+scenario         — setup + choices[{text, consequence}] → amber decision card
+misconception    — myth + reality → rose/sage two-panel card
+reveal           — prompt + answer (html) → blue progressive-disclosure card
+bridge           — html → dark teal "¿Para qué me sirve esto?" connector
+self-reflect     — prompt → purple free-text reflection card
+```
+
+Full component specs, usage rules, and design tokens: `docs/DESIGN_SYSTEM.md` Section 8.
+Pedagogy usage rules and rhythm principles: `docs/PEDAGOGY.md` Strategy 11.

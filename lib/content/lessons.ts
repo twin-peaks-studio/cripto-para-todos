@@ -177,50 +177,120 @@ export const LESSONS: Lesson[] = [
     xp: 100,
     quizQuestionCount: 5,
     content: [
+
+      // ── Activación ──────────────────────────────────────────────────────
+      {
+        type: 'opening-question',
+        question: '¿Qué has escuchado sobre Bitcoin que más te llama la atención — o te genera más dudas?',
+        options: [
+          {
+            text: 'Que su precio sube y baja muchísimo',
+            response: 'Exacto — y eso tiene una explicación concreta. Esta lección te enseña por qué pasa eso y cómo pensarlo antes de decidir si invertir.',
+          },
+          {
+            text: 'Que hay gente que se hizo millonaria con él',
+            response: 'Es verdad — y también hay quienes perdieron mucho. Esta lección te explica qué hace que el precio suba y baje, para que entiendas los dos lados.',
+          },
+          {
+            text: 'Que nadie sabe quién lo creó',
+            response: '¡Es un misterio real! Vamos a ver eso — y lo más importante: cómo funciona y si tiene sentido para ti como inversión.',
+          },
+          {
+            text: 'Que solo hay una cantidad limitada',
+            response: 'Eso es exactamente la clave. La escasez de Bitcoin es lo que más impacta su precio — y lo vamos a ver a fondo en esta lección.',
+          },
+        ],
+      },
+
+      // ── Sección 1: Qué es Bitcoin ────────────────────────────────────────
       {
         type: 'paragraph',
-        html: 'Bitcoin fue la primera criptomoneda del mundo. Fue creada en 2009 por una persona (o grupo) que usó el nombre <strong>Satoshi Nakamoto</strong>. Nadie sabe quién es en realidad — es uno de los grandes misterios del mundo digital. Satoshi publicó el código del Bitcoin en internet y desapareció.',
+        html: 'Bitcoin fue la primera criptomoneda del mundo. Fue creada en 2009 por una persona (o grupo) que usó el nombre <strong>Satoshi Nakamoto</strong>. Nadie sabe quién es en realidad — es uno de los grandes misterios del mundo digital. Satoshi publicó el código del Bitcoin en internet para que cualquiera pudiera usarlo, y luego desapareció.',
+      },
+      {
+        type: 'reveal',
+        prompt: '¿Cuántos bitcoins pueden existir en total — para siempre?',
+        answer: 'Exactamente <strong>21 millones</strong>, nunca uno más. Eso está escrito en el código original de Satoshi y nadie puede cambiarlo — ni gobiernos, ni empresas, ni los propios usuarios. De esos 21 millones, ya se han creado más de 19 millones. Los que faltan se liberan muy lentamente y el último se creará cerca del año 2140.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — el oro que cabe en tu teléfono',
-        html: 'El oro vale porque es escaso — hay una cantidad limitada en la Tierra y es difícil extraerlo. Bitcoin funciona exactamente igual, pero en versión digital: solo pueden existir <strong>21 millones de bitcoins en total</strong>, nunca más. Están escritos así en el código y nadie puede cambiarlo. Es como si alguien hubiera creado una mina de oro de tamaño fijo y cuando se acaba, se acaba. Esa escasez es lo que hace que mucha gente lo vea como un "oro digital".',
+        html: 'El oro vale porque es escaso: hay una cantidad limitada en la Tierra y extraerlo cuesta mucho. Bitcoin funciona igual, pero en digital: <strong>solo existen 21 millones</strong> y nadie puede crear más. Es como si hubiera una mina de oro de tamaño fijo — cuando se acaba, se acaba. Por eso mucha gente lo llama "oro digital".',
       },
       {
-        type: 'info',
-        html: '<strong>Dato importante:</strong> De los 21 millones de bitcoins posibles, ya se han creado más de 19 millones. Los que faltan se van liberando muy lentamente con el tiempo. Se estima que el último bitcoin se creará alrededor del año 2140.',
+        type: 'quick-check',
+        question: '¿Por qué el límite de 21 millones de bitcoins es importante para su valor?',
+        options: [
+          {
+            text: 'Porque los gobiernos lo decidieron así para controlarlo mejor',
+            explanation: 'Al contrario — ningún gobierno controla Bitcoin. El límite está en el código original y ninguna autoridad puede cambiarlo. Es precisamente esa independencia lo que atrae a mucha gente.',
+          },
+          {
+            text: 'Porque la escasez hace que algo pueda valer más si más gente lo quiere',
+            correct: true,
+            explanation: '¡Exacto! Cuando algo es limitado y la demanda crece, el precio tiende a subir. Bitcoin tiene un tope fijo para siempre — al contrario del dinero normal, que los gobiernos pueden imprimir en cantidad ilimitada.',
+          },
+          {
+            text: 'No es importante — el precio depende solo de las noticias',
+            explanation: 'Las noticias influyen en el corto plazo, pero la escasez es uno de los fundamentos de por qué Bitcoin tiene valor en absoluto. Sin ese límite sería como cualquier moneda que se puede imprimir infinitamente.',
+          },
+        ],
       },
       {
         type: 'paragraph',
-        html: 'Hoy en día, un solo bitcoin puede costar decenas de miles de dólares. Pero <strong>no tienes que comprar un bitcoin completo</strong>. Puedes comprar una fracción muy pequeña — tan pequeño como $10 o $20 dólares. Bitcoin se puede dividir en partes muy pequeñas.',
+        html: 'Hoy un solo bitcoin puede costar decenas de miles de dólares, pero <strong>no tienes que comprar uno entero</strong>. Puedes comprar una fracción — con $10 o $20 ya estás participando. La unidad más pequeña se llama <em>satoshi</em> (en honor al creador): 1 bitcoin = 100,000,000 satoshis.',
       },
-      {
-        type: 'info',
-        html: '<strong>Dato curioso:</strong> La unidad más pequeña de Bitcoin se llama un <em>Satoshi</em>, en honor a su creador misterioso. 1 Bitcoin = 100,000,000 satoshis. Cuando compras $20 de bitcoin, estás comprando miles de satoshis. No necesitas comprar uno "entero".',
-      },
+
+      // ── Sección 2: ¿Por qué sube y baja el precio? ──────────────────────
       {
         type: 'heading',
         level: 2,
-        text: '¿Cómo se determina el precio de Bitcoin?',
+        text: '¿Por qué sube y baja el precio de Bitcoin?',
       },
       {
         type: 'paragraph',
-        html: 'El precio de Bitcoin sube cuando más personas lo quieren comprar y baja cuando muchas personas lo quieren vender. No hay ninguna empresa ni gobierno que fije el precio — lo determina el mercado libre, millones de personas comprando y vendiendo en todo el mundo.',
+        html: 'No hay banco ni gobierno que fije el precio de Bitcoin. Lo determinan millones de personas comprando y vendiendo en todo el mundo — igual que el precio del oro, del café o de una casa. Cuando más gente quiere comprar que vender, el precio sube. Cuando más gente quiere vender, baja.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — las entradas del concierto',
-        html: 'Imagina que hay exactamente 100 entradas para el concierto más esperado del año. Hay 10,000 personas que las quieren. ¿Qué pasa? El precio sube porque hay más demanda que oferta. Con Bitcoin pasa lo mismo: solo hay 21 millones en total, y cada año más personas, empresas e instituciones los quieren. Cuando más gente quiere comprar de lo que hay disponible, el precio sube. Cuando muchos quieren vender al mismo tiempo, el precio baja.',
+        html: 'Imagina 100 entradas para el concierto del año con 10,000 personas que las quieren. El precio sube automáticamente porque hay más demanda que oferta. Con Bitcoin pasa lo mismo: hay un máximo fijo de 21 millones, y cada año más personas, empresas e instituciones los quieren. <strong>Más demanda + oferta fija = precio más alto</strong>. Y cuando muchos venden al mismo tiempo — el precio cae igual de rápido.',
       },
       {
-        type: 'analogy',
-        label: '💡 Piénsalo así — las joyas de la abuela',
-        html: 'Imagina que tu abuela tiene un collar de oro antiguo, único en el mundo. Si mucha gente lo quiere, puede pedir más dinero por él. Si nadie lo quiere en ese momento, vale menos — aunque siga siendo el mismo collar. Bitcoin es similar: su valor no depende de que alguien lo "respalde" oficialmente, sino de cuánta gente cree en él y lo quiere tener.',
+        type: 'misconception',
+        myth: '"Bitcoin no tiene valor real porque no está respaldado por nada — ni oro, ni un gobierno."',
+        reality: 'El dólar tampoco está respaldado por oro desde 1971. El valor del dinero viene de que mucha gente confía en él y lo acepta. Bitcoin tiene valor porque millones de personas en el mundo lo reconocen, lo aceptan como pago, y confían en que su código es seguro e inmutable. Su "respaldo" es la escasez + la red global de usuarios.',
       },
       {
         type: 'warn',
         title: '⚠️ El precio puede cambiar mucho y rápido',
-        html: 'El precio de Bitcoin ha subido más de 10,000% en ciertos períodos históricos, pero también ha caído más del 70% en otros momentos. En 2022, cayó de $68,000 a $16,000 en menos de un año. Este nivel de cambio se llama <strong>volatilidad</strong> y es uno de los riesgos más importantes que debes entender antes de invertir.',
+        html: 'Bitcoin ha subido más de 10,000% en ciertos períodos históricos — pero también ha caído más del 70% en otros momentos. En 2022 cayó de $68,000 a $16,000 en menos de un año. Este nivel de cambio se llama <strong>volatilidad</strong> y es uno de los riesgos más importantes que debes entender antes de invertir.',
+      },
+      {
+        type: 'scenario',
+        setup: 'Compraste $200 de Bitcoin hace 6 meses. Hoy valen $100 — perdiste la mitad. Tus amigas te dicen cosas diferentes.',
+        choices: [
+          {
+            text: '"Vende ya, antes de perder más" — y vendes todo',
+            consequence: 'Es una decisión válida si ese dinero lo necesitas. Pero históricamente, quienes vendieron en las caídas grandes de Bitcoin y esperaron a que bajara más, luego vieron que el precio se recuperó. Vender en pánico es la forma más común de perder dinero en mercados volátiles.',
+          },
+          {
+            text: '"No toco nada — esto es largo plazo" — y esperas',
+            consequence: 'Esta estrategia ha funcionado históricamente para Bitcoin, que ha superado sus mínimos anteriores en cada ciclo. Pero requiere poder esperar años, y no hay garantía de que eso vuelva a ocurrir. Solo funciona si el dinero que usaste es dinero que podías permitirte perder.',
+          },
+          {
+            text: '"Compro más ahora que está barato" — y añades $100 más',
+            consequence: 'Esto se llama "promediar a la baja" (DCA). Si crees en el activo largo plazo, comprar más cuando baja reduce tu precio promedio de compra. Es una estrategia usada por inversores experimentados, pero también requiere tolerancia real al riesgo — porque podría bajar aún más.',
+          },
+        ],
+      },
+      {
+        type: 'self-reflect',
+        prompt: '¿Cuánto dinero te sentirías cómoda arriesgando en Bitcoin — sabiendo que podría caer a la mitad?',
+      },
+      {
+        type: 'bridge',
+        html: 'Ahora entiendes los dos pilares de Bitcoin: <strong>escasez fija</strong> (nunca más de 21 millones) y <strong>precio por oferta y demanda</strong> (millones de personas decidiendo). Esos dos elementos son exactamente por qué muchos lo ven como inversión — y por qué es tan volátil al mismo tiempo. En la siguiente lección vas a conocer Ethereum y otras monedas que funcionan diferente y tienen usos distintos.',
       },
       {
         type: 'video',
@@ -244,10 +314,43 @@ export const LESSONS: Lesson[] = [
     xp: 100,
     quizQuestionCount: 5,
     content: [
+
+      // ── Activación ──────────────────────────────────────────────────────
+      {
+        type: 'opening-question',
+        question: '¿Alguien te ha hablado de una criptomoneda específica — aparte de Bitcoin?',
+        options: [
+          {
+            text: 'Sí — me recomendaron una que "va a explotar pronto"',
+            response: 'Eso pasa mucho, y es exactamente lo que vamos a aprender a evaluar. Esta lección te da las herramientas para saber cuándo una recomendación tiene sentido y cuándo es una señal de alerta.',
+          },
+          {
+            text: 'He escuchado de Ethereum pero no sé bien qué es',
+            response: 'Perfecto. Ethereum es la segunda más importante después de Bitcoin, y tiene un propósito muy diferente. Vamos a ver exactamente qué hace y por qué importa.',
+          },
+          {
+            text: 'No, solo sé de Bitcoin',
+            response: 'Muy bien. Esta lección te muestra el ecosistema completo — qué más existe, qué tiene valor real y qué es mejor evitar.',
+          },
+          {
+            text: 'He escuchado de muchas pero no sé cuáles son confiables',
+            response: 'Esa confusión es totalmente normal — hay miles. Esta lección te da los criterios clave para distinguir las confiables de las que no lo son.',
+          },
+        ],
+      },
+
+      // ── Sección 1: El ecosistema ─────────────────────────────────────────
       {
         type: 'paragraph',
-        html: 'Bitcoin no es la única criptomoneda. Existen miles de ellas. Las que no son Bitcoin se llaman <strong>altcoins</strong> (monedas alternativas, del inglés "alternative coins"). La más importante y reconocida de todas las altcoins es <strong>Ethereum (ETH)</strong>.',
+        html: 'Bitcoin no es la única criptomoneda. Existen miles de ellas. Las que no son Bitcoin se llaman <strong>altcoins</strong> (monedas alternativas). La más importante y reconocida es <strong>Ethereum (ETH)</strong>.',
       },
+      {
+        type: 'reveal',
+        prompt: '¿Cuántas criptomonedas diferentes existen en el mundo hoy?',
+        answer: 'Más de <strong>20,000 criptomonedas</strong> existen en el mercado. La gran mayoría no tiene valor real ni uso práctico. Solo un puñado — Bitcoin, Ethereum, y algunas otras — tienen historial real, uso activo y comunidades grandes. Esto significa que elegir bien importa muchísimo.',
+      },
+
+      // ── Sección 2: Ethereum ──────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -255,13 +358,34 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Ethereum fue creado en 2015 por un joven programador llamado <strong>Vitalik Buterin</strong>. A diferencia de Bitcoin, que fue diseñado principalmente como dinero digital, Ethereum fue diseñado como una <strong>plataforma de programación</strong>. Los desarrolladores pueden construir aplicaciones, juegos y servicios financieros encima de Ethereum, similar a cómo los programadores construyen apps para iPhone o Android.',
+        html: 'Ethereum fue creado en 2015 por <strong>Vitalik Buterin</strong>, un joven programador. A diferencia de Bitcoin — diseñado principalmente como dinero digital — Ethereum fue diseñado como una <strong>plataforma de programación</strong>. Los desarrolladores pueden construir aplicaciones y servicios financieros encima de él, como se construyen apps para un teléfono.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — Bitcoin es el oro, Ethereum es la electricidad',
-        html: 'Imagina que Bitcoin es como el <strong>oro</strong> — algo que guardas como reserva de valor, como ahorro. Ethereum es más como la <strong>electricidad de un edificio</strong> — se usa para hacer funcionar todo lo que está adentro. Sin electricidad, los ascensores, las luces y los aparatos no funcionan. Sin Ethereum, muchas aplicaciones y servicios del mundo digital no pueden funcionar. Son complementarios, no competidores directos.',
+        html: 'Bitcoin es como el <strong>oro</strong>: lo guardas como reserva de valor. Ethereum es más como la <strong>electricidad del edificio</strong>: hace funcionar todo lo que está adentro. Sin electricidad, nada funciona. Sin Ethereum, muchas aplicaciones del mundo digital no pueden operar. Son complementarios — no competidores directos.',
       },
+      {
+        type: 'quick-check',
+        question: '¿Cuál es la diferencia principal entre Bitcoin y Ethereum?',
+        options: [
+          {
+            text: 'Bitcoin es más caro, por eso vale más',
+            explanation: 'El precio no define el propósito. Bitcoin fue diseñado como dinero digital y reserva de valor. Ethereum fue diseñado como plataforma para construir aplicaciones. Son herramientas con fines distintos.',
+          },
+          {
+            text: 'Bitcoin es principalmente dinero digital; Ethereum es una plataforma para construir aplicaciones',
+            correct: true,
+            explanation: '¡Exacto! Por eso muchos los ven como complementos, no como competidores. Cada uno tiene un rol diferente en el ecosistema digital.',
+          },
+          {
+            text: 'No hay diferencia real — ambos son lo mismo con distinto nombre',
+            explanation: 'Son muy diferentes en diseño y propósito. Bitcoin tiene un límite fijo de 21 millones y es principalmente dinero. Ethereum no tiene ese límite fijo y su valor viene del uso de su red para aplicaciones.',
+          },
+        ],
+      },
+
+      // ── Sección 3: Smart contracts ───────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -269,31 +393,60 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Una de las cosas más especiales de Ethereum son los <strong>contratos inteligentes</strong> (smart contracts). Son acuerdos digitales que se ejecutan automáticamente cuando se cumplen ciertas condiciones — sin necesidad de abogados, notarios ni intermediarios.',
+        html: 'La función más especial de Ethereum son los <strong>contratos inteligentes</strong>. Son acuerdos digitales que se ejecutan automáticamente cuando se cumplen ciertas condiciones — sin abogados, notarios ni intermediarios.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — la máquina de dulces automática',
-        html: 'Imagina una máquina de dulces: metes una moneda, oprimes el botón del dulce que quieres, y la máquina te lo da automáticamente. No necesitas hablar con nadie, no necesitas que alguien confíe en ti — la máquina simplemente sigue las reglas programadas. Un contrato inteligente funciona igual: "Si Luis paga $X antes del viernes, automáticamente se transfiere la propiedad a su nombre." No hay intermediario, no hay demora, no hay posibilidad de que alguien se olvide o haga trampa.',
+        html: 'Metes una moneda, oprimes el botón, y la máquina te da el dulce automáticamente. No necesitas hablar con nadie. Un contrato inteligente funciona igual: "Si la compradora paga $X antes del viernes, automáticamente se transfiere la escritura a su nombre." Sin intermediarios, sin demoras, sin posibilidad de que alguien haga trampa.',
       },
+
+      // ── Sección 4: Las altcoins ──────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
-        text: 'Otras criptomonedas — las altcoins',
+        text: 'Otras criptomonedas — cómo pensar en ellas',
       },
       {
         type: 'paragraph',
-        html: 'Además de Bitcoin y Ethereum, existen miles de otras criptomonedas. Algunas tienen propósitos específicos, otras son simplemente experimentos, y muchas no tienen ningún valor real. Algunas de las más conocidas incluyen <strong>Solana (SOL)</strong>, <strong>Cardano (ADA)</strong>, <strong>Litecoin (LTC)</strong>, y <strong>Ripple (XRP)</strong>.',
+        html: 'Además de Bitcoin y Ethereum, existen miles de altcoins. Algunas tienen usos reales: <strong>Solana (SOL)</strong>, <strong>Cardano (ADA)</strong>, <strong>Litecoin (LTC)</strong>, <strong>Ripple (XRP)</strong>. Muchas otras no tienen ningún propósito real.',
       },
       {
         type: 'analogy',
-        label: '💡 Piénsalo así — el mercado de artesanías',
-        html: 'Imagina un mercado donde Bitcoin es el <strong>dólar americano</strong> — lo conoce todo el mundo, es estable en comparación y es el más aceptado. Ethereum es como el <strong>euro</strong> — también muy establecido y usado ampliamente. Las demás altcoins son como las monedas de países pequeños o billetes de colección: algunas pueden valer algo, muchas no valen casi nada, y es muy difícil saber cuáles serán las próximas en tener valor.',
+        label: '💡 Piénsalo así — monedas en un mercado internacional',
+        html: 'Bitcoin es el <strong>dólar</strong> — lo conoce el mundo entero. Ethereum es el <strong>euro</strong> — establecido y ampliamente usado. Las demás altcoins son como monedas de países pequeños o billetes de colección: algunas valen algo, muchas no valen casi nada, y es difícil saber cuáles tendrán valor en el futuro.',
+      },
+      {
+        type: 'misconception',
+        myth: '"Si Bitcoin es bueno, las otras criptomonedas también lo son — solo hay que elegir la correcta."',
+        reality: 'Bitcoin tiene 15+ años de historial, millones de usuarios y es el único reconocido como activo por gobiernos e instituciones financieras. La mayoría de las altcoins son especulación pura — muchas han perdido el 90-100% de su valor. El historial importa mucho más que la promesa.',
       },
       {
         type: 'warn',
-        title: '⚠️ Cuidado con las altcoins desconocidas',
-        html: 'Hay miles de criptomonedas que prometen hacerte rica rápidamente. La gran mayoría pierde todo su valor o desaparece en pocos años. <strong>Bitcoin y Ethereum son las más establecidas</strong> por tener más de una década de historia. Antes de comprar cualquier otra criptomoneda, investiga mucho. Si alguien te recomienda una moneda desconocida diciendo que va a explotar pronto, eso es casi siempre una señal de alarma.',
+        title: '⚠️ Cuidado con las recomendaciones de altcoins desconocidas',
+        html: 'Si alguien te dice que una moneda desconocida "va a explotar pronto" o que tienes que comprar ya, eso es casi siempre una señal de alarma. <strong>Bitcoin y Ethereum son las más establecidas</strong> por más de una década de historia real. Antes de comprar cualquier otra criptomoneda, investiga mucho.',
+      },
+      {
+        type: 'scenario',
+        setup: 'Tu prima te manda un mensaje: "Acabo de meter $500 en una nueva moneda llamada AquaCoin. Ya subió 200% esta semana. ¡Métele dinero antes de que siga subiendo! Solo dura hasta el fin de semana."',
+        choices: [
+          {
+            text: 'Le meto $200 — si ya subió 200%, imagínate si sigue',
+            consequence: 'Las subidas rápidas y artificiales son una señal clásica de manipulación de mercado. Cuando algo "solo dura hasta el fin de semana", significa que el tiempo de presión es artificial. La mayoría de estas monedas desaparecen después del pico, dejando a los últimos compradores con pérdidas totales.',
+          },
+          {
+            text: 'Le pregunto: ¿qué problema resuelve AquaCoin? ¿Quién está detrás?',
+            consequence: 'Excelente instinto. Cualquier inversión seria puede responder esas preguntas. Si la respuesta es vaga o solo habla del precio, eso es suficiente señal para no entrar. Las mejores inversiones tienen propósito claro, equipo conocido e historial verificable.',
+          },
+          {
+            text: 'No le meto nada — si yo no la conozco, mejor no',
+            consequence: 'Válida y segura. No invertir en lo que no entiendes es una de las reglas más importantes. "No sé suficiente" es una razón perfectamente legítima para pasar. En cripto, el miedo a perderse algo (FOMO) es una de las causas más comunes de pérdidas.',
+          },
+        ],
+      },
+      {
+        type: 'bridge',
+        html: 'Ahora entiendes el ecosistema: <strong>Bitcoin como reserva de valor</strong>, <strong>Ethereum como plataforma de aplicaciones</strong>, y miles de altcoins con calidad muy variable. La próxima lección explica cómo se crean los bitcoins y cómo funcionan las empresas que hacen eso — lo cual es otro ángulo para participar en este mercado.',
       },
       {
         type: 'video',
@@ -317,19 +470,66 @@ export const LESSONS: Lesson[] = [
     xp: 100,
     quizQuestionCount: 5,
     content: [
+
+      // ── Activación ──────────────────────────────────────────────────────
+      {
+        type: 'opening-question',
+        question: '¿Sabías que hay dos formas de "participar" en Bitcoin sin comprar Bitcoin directamente?',
+        options: [
+          {
+            text: 'No, pensé que solo se podía comprar Bitcoin',
+            response: 'Hay más opciones. Esta lección te explica cómo se crean los bitcoins y cómo las empresas que hacen eso cotizan en la bolsa — igual que cualquier acción.',
+          },
+          {
+            text: 'He escuchado algo sobre acciones de cripto pero no entiendo bien',
+            response: 'Vamos a ver exactamente eso. La diferencia entre comprar Bitcoin directamente y comprar acciones de una empresa minera tiene implicaciones importantes de riesgo.',
+          },
+          {
+            text: 'Sé que hay minería pero no sé cómo funciona',
+            response: 'Perfecto. Minería es cómo se crean los bitcoins nuevos — y es un negocio enorme. Vamos a ver cómo funciona y qué significa para ti como inversora.',
+          },
+          {
+            text: 'Alguien me mencionó acciones de HUT 8 o Marathon',
+            response: 'Esas son empresas mineras de Bitcoin. Esta lección te explica exactamente qué hacen, cómo ganar dinero con ellas, y qué riesgos adicionales tienen comparado con comprar Bitcoin directamente.',
+          },
+        ],
+      },
+
+      // ── Sección 1: Minería ───────────────────────────────────────────────
       {
         type: 'paragraph',
-        html: 'Los bitcoins no los crea un banco ni un gobierno. Se "minan" — no con pico y pala como el oro real, sino con computadoras muy potentes que resuelven problemas matemáticos extremadamente complejos. Cuando una computadora resuelve el problema primero, recibe una cantidad de bitcoin nuevo como recompensa. A esto se le llama <strong>minería de Bitcoin</strong>.',
+        html: 'Los bitcoins no los crea un banco ni un gobierno. Se "minan" — no con pico y pala, sino con computadoras muy potentes que resuelven problemas matemáticos complejos. La primera computadora que resuelve el problema recibe bitcoin nuevo como recompensa. A esto se le llama <strong>minería de Bitcoin</strong>.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — el concurso de matemáticas',
-        html: 'Imagina un concurso nacional de matemáticas donde miles de participantes reciben el mismo problema difícil al mismo tiempo. La persona que lo resuelve primero gana un premio en efectivo. Cada 10 minutos hay un problema nuevo. Las computadoras mineras hacen exactamente esto — compiten entre sí para resolver el problema del momento, y la ganadora recibe bitcoins. Es un trabajo real que consume una cantidad enorme de electricidad.',
+        html: 'Imagina miles de participantes recibiendo el mismo problema difícil al mismo tiempo. El primero en resolverlo gana un premio en efectivo. Cada 10 minutos hay un problema nuevo. Las computadoras mineras hacen exactamente eso — compiten entre sí, y la ganadora recibe bitcoins. Es trabajo real que consume enormes cantidades de electricidad.',
       },
       {
         type: 'info',
-        html: '<strong>Dato interesante:</strong> La red de minería de Bitcoin consume más electricidad que algunos países enteros. Por eso las empresas mineras buscan ubicarse donde la electricidad sea barata — cerca de represas hidroeléctricas, parques solares o eólicos.',
+        html: '<strong>Dato:</strong> La red de minería de Bitcoin consume más electricidad que algunos países enteros. Por eso las empresas mineras buscan ubicarse donde la electricidad sea barata — cerca de represas hidroeléctricas, parques solares o eólicos.',
       },
+      {
+        type: 'quick-check',
+        question: '¿Quién decide cuántos bitcoins se crean cada día?',
+        options: [
+          {
+            text: 'Los gobiernos — ellos regulan cuánto se puede minar',
+            explanation: 'Ningún gobierno controla la creación de Bitcoin. Las reglas están en el código original de Satoshi — son matemáticas, no políticas. Los mineros las siguen porque el código lo exige.',
+          },
+          {
+            text: 'El código de Bitcoin — las reglas están programadas y no las puede cambiar nadie',
+            correct: true,
+            explanation: '¡Correcto! El ritmo de creación de nuevos bitcoins está programado para siempre en el código. Aproximadamente cada 10 minutos se crean algunos bitcoins nuevos, y esa cantidad se reduce a la mitad cada 4 años (el "halving").',
+          },
+          {
+            text: 'Las empresas mineras — ellas deciden cuánto producir según la demanda',
+            explanation: 'Las empresas mineras no controlan la cantidad — solo compiten para resolver los problemas matemáticos. La cantidad de bitcoin que se crea está fijada por el código, independientemente de cuántas mineras participen.',
+          },
+        ],
+      },
+
+      // ── Sección 2: Empresas mineras ─────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -337,38 +537,62 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Hoy en día, la minería individual es casi imposible — las computadoras necesarias son tan caras y especializadas que solo las empresas grandes pueden hacerlo de manera rentable. Estas empresas construyen enormes centros de datos llenos de computadoras mineras que funcionan las 24 horas del día.',
+        html: 'Hoy la minería individual es prácticamente imposible — las computadoras necesarias son tan caras y especializadas que solo las empresas grandes pueden hacerlo de manera rentable. Estas empresas construyen enormes centros de datos con computadoras mineras que funcionan las 24 horas.',
       },
       {
         type: 'paragraph',
-        html: 'Algunas de estas empresas mineras son públicas — cotizan en la bolsa de valores y cualquier persona puede comprar sus acciones. <strong>HUT 8</strong> (símbolo HUT) es un ejemplo conocido, pero hay otras como Marathon Digital Holdings (MARA), Riot Platforms (RIOT) y CleanSpark (CLSK).',
+        html: 'Algunas de estas empresas son públicas — cotizan en la bolsa y cualquier persona puede comprar sus acciones. <strong>HUT 8</strong> (símbolo HUT) es un ejemplo, junto con Marathon Digital (MARA), Riot Platforms (RIOT) y CleanSpark (CLSK).',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — la mina de oro vs. las acciones de la minera',
-        html: 'Hay dos formas de beneficiarte del precio del oro: (1) <strong>Comprar oro directamente</strong> — tienes el metal en tu poder. Si sube el precio, tú te beneficias directamente. (2) <strong>Comprar acciones de una empresa minera de oro</strong> — eres dueño de una parte de la empresa que extrae el oro. Si el precio del oro sube y la empresa trabaja bien, tus acciones también suben. Pero si la empresa tiene problemas — malos gerentes, costos altos, deudas — tus acciones pueden bajar aunque el oro siga caro. Con Bitcoin funciona exactamente igual.',
+        html: '(1) <strong>Comprar oro directamente</strong>: tienes el metal. Si sube el precio, te beneficias directamente. (2) <strong>Comprar acciones de una minera de oro</strong>: eres dueña de parte de la empresa que extrae el oro. Si el precio sube y la empresa funciona bien, tus acciones suben. Pero si la empresa tiene problemas — malos gerentes, deudas, costos altos — tus acciones pueden bajar aunque el oro siga caro. Con Bitcoin funciona exactamente igual.',
       },
+
+      // ── Sección 3: Comparación ───────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
-        text: 'Comprar Bitcoin directamente vs. acciones mineras',
+        text: 'Bitcoin directo vs. acciones mineras — ¿cuál elegir?',
       },
       {
         type: 'table',
         headers: ['Característica', 'Bitcoin directo', 'Acciones de empresa minera'],
         rows: [
-          ['¿Dónde se compra?', 'Exchange (Coinbase, Kraken, etc.)', 'Bolsa de valores (Schwab, Fidelity, Robinhood)'],
+          ['¿Dónde se compra?', 'Exchange (Coinbase, Kraken)', 'Bolsa (Schwab, Fidelity, Robinhood)'],
           ['¿Qué posees?', 'Bitcoin directamente', 'Parte de una empresa'],
-          ['Riesgo principal', 'Solo precio del Bitcoin', 'Precio del Bitcoin + riesgos de la empresa'],
+          ['Riesgo principal', 'Solo precio del Bitcoin', 'Precio de Bitcoin + riesgos de la empresa'],
           ['¿Requiere cuenta cripto?', 'Sí', 'No — usa tu cuenta de inversión normal'],
-          ['¿Más volátil?', 'Volátil', 'Generalmente más volátil que Bitcoin'],
+          ['Volatilidad', 'Alta', 'Generalmente más alta que Bitcoin'],
           ['Protección del gobierno', 'Ninguna', 'SIPC protege cuentas de corretaje'],
         ],
       },
       {
         type: 'warn',
         title: '⚠️ Las acciones mineras tienen doble riesgo',
-        html: 'Cuando compras acciones de una empresa minera, el precio puede bajar por <strong>dos razones</strong>: (1) si cae el precio de Bitcoin, y (2) si la empresa tiene sus propios problemas — deudas, altos costos de electricidad, malos gerentes, competencia fuerte, o errores estratégicos. Históricamente, las acciones mineras bajan más que Bitcoin cuando el mercado cae, y suben más cuando sube. Mayor riesgo, mayor volatilidad en ambas direcciones.',
+        html: 'El precio puede bajar por <strong>dos razones independientes</strong>: (1) si cae el precio de Bitcoin, y (2) si la empresa tiene sus propios problemas — deudas, costos altos de electricidad, malos gerentes, competencia. Históricamente, las acciones mineras caen más que Bitcoin cuando el mercado baja, y suben más cuando sube. Mayor volatilidad en ambas direcciones.',
+      },
+      {
+        type: 'scenario',
+        setup: 'Tienes $300 que quieres invertir en Bitcoin. Una amiga te dice que compres acciones de Marathon Digital (MARA) en lugar de Bitcoin — "suben más cuando Bitcoin sube". Tu otra amiga dice que compres Bitcoin directo en Coinbase.',
+        choices: [
+          {
+            text: 'Compro MARA — si sube más cuando sube Bitcoin, mejor',
+            consequence: 'Es verdad que las acciones mineras suelen amplificar los movimientos de Bitcoin — suben más, pero también bajan más. MARA bajó más del 90% en el mercado bajista de 2022, comparado con el 75% de Bitcoin. Además, tiene riesgos propios de empresa: deudas, gestión, competencia. Es una apuesta de mayor riesgo dentro de una apuesta ya de alto riesgo.',
+          },
+          {
+            text: 'Compro Bitcoin directo en Coinbase — más simple',
+            consequence: 'Esta es la opción más directa. Tu inversión sigue exactamente el precio de Bitcoin sin el riesgo adicional de una empresa específica. Es más simple de entender, de rastrear, y para muchos inversores es el punto de entrada más apropiado. La regla general: si no entiendes bien cómo funciona una empresa, es difícil evaluar si conviene.',
+          },
+          {
+            text: 'Divido — $150 en cada uno',
+            consequence: 'La diversificación siempre es razonable. Pero aquí hay que notar que ambos activos están muy correlacionados — cuando Bitcoin baja, MARA normalmente baja aún más. No es la misma diversificación que mezclar cripto con bonos o acciones de otra industria.',
+          },
+        ],
+      },
+      {
+        type: 'bridge',
+        html: 'Ahora entiendes que hay <strong>múltiples ángulos</strong> para participar en el mercado de Bitcoin: comprarlo directamente, o invertir en las empresas que lo producen. Cada opción tiene su propio perfil de riesgo. La siguiente lección va al corazón de todo: cuáles son los riesgos reales del cripto y cómo pensar en ellos honestamente.',
       },
       {
         type: 'video',
@@ -392,11 +616,38 @@ export const LESSONS: Lesson[] = [
     xp: 125,
     quizQuestionCount: 5,
     content: [
+
+      // ── Activación ──────────────────────────────────────────────────────
+      {
+        type: 'opening-question',
+        question: 'Cuando piensas en invertir en cripto, ¿qué es lo que más te preocupa?',
+        options: [
+          {
+            text: 'Perder todo el dinero que invierta',
+            response: 'Esa preocupación es completamente válida — y esta lección te da el contexto honesto para entender exactamente cuánto puedes perder y cuándo. El conocimiento es la mejor protección.',
+          },
+          {
+            text: 'No entender bien cómo funciona y cometer un error',
+            response: 'Los errores en cripto pueden ser costosos e irreversibles. Esta lección cubre exactamente eso — qué errores son comunes y cómo evitarlos desde el principio.',
+          },
+          {
+            text: 'Que sea una estafa o que me roben',
+            response: 'Las estafas son reales y muy sofisticadas. Esta lección toca los riesgos generales, y la siguiente está dedicada completamente a reconocer y evitar estafas específicas.',
+          },
+          {
+            text: 'Que suba y baje tanto que no pueda dormir',
+            response: 'La volatilidad extrema es uno de los riesgos más reales del cripto. Esta lección te ayuda a entender exactamente qué nivel de cambio es normal — y si puedes con eso emocionalmente.',
+          },
+        ],
+      },
+
       {
         type: 'warn',
         title: 'Regla número uno — antes de todo lo demás',
         html: '<strong>Nunca inviertas dinero que no puedas permitirte perder completamente.</strong> El cripto es una inversión de alto riesgo. No es como tener dinero en el banco. Esto no es exageración — es la realidad del mercado.',
       },
+
+      // ── Riesgo 1 ─────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -404,13 +655,20 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'El precio del cripto puede cambiar de manera drástica en muy poco tiempo. Bitcoin ha subido más del 1,000% en períodos positivos, pero también ha caído más del 70% en períodos negativos. En 2022, Bitcoin cayó de $68,000 a $16,000 en menos de un año — una pérdida del 76%. Es completamente normal que tu inversión valga mucho menos de lo que pagaste en algún momento.',
+        html: 'El precio del cripto puede cambiar dramáticamente en muy poco tiempo. Bitcoin ha subido más del 1,000% en períodos positivos, pero también ha caído más del 70% en períodos negativos. En 2022, Bitcoin cayó de $68,000 a $16,000 en menos de un año — pérdida del 76%. Es completamente normal que tu inversión valga mucho menos de lo que pagaste.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — la montaña rusa',
-        html: 'Imagina subir a una montaña rusa donde no sabes cuándo sube ni cuándo baja, y puedes bajar a cualquier velocidad en cualquier momento. Eso es invertir en cripto. Las personas que han ganado dinero con cripto generalmente son las que tuvieron paciencia para aguantar las bajadas sin vender. Pero eso requiere mucha fortaleza emocional y sobre todo <strong>no necesitar ese dinero pronto</strong>.',
+        html: 'Imagina subir a una montaña rusa donde no sabes cuándo sube ni cuándo baja, y puede bajar a cualquier velocidad en cualquier momento. Las personas que han ganado dinero con cripto generalmente son las que aguantaron las bajadas sin vender. Pero eso requiere mucha fortaleza emocional y sobre todo <strong>no necesitar ese dinero pronto</strong>.',
       },
+      {
+        type: 'reveal',
+        prompt: '¿Cuánto cayó Bitcoin en su peor año? ¿Serías capaz de aguantar eso sin vender?',
+        answer: 'En 2022, Bitcoin cayó de <strong>$68,000 a $16,000</strong> — una caída del 76% en menos de 12 meses. Si hubieras invertido $1,000, habrían valido $240. La mayoría de las personas que invirtieron en ese pico vendieron con pánico y perdieron permanentemente. Solo quienes pudieron esperar (y tenían el dinero para hacerlo) recuperaron y superaron esa pérdida.',
+      },
+
+      // ── Riesgo 2 ─────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -418,13 +676,15 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'El dinero en tu cuenta bancaria está protegido por el gobierno a través del <strong>FDIC</strong> — hasta $250,000 por persona. Si el banco cierra, recuperas tu dinero. El cripto <strong>no tiene ninguna protección similar</strong>. Si la plataforma donde guardas tu cripto cierra, es hackeada, o desaparece, puedes perder todo sin ningún recurso legal.',
+        html: 'El dinero en tu cuenta bancaria está protegido por el <strong>FDIC</strong> — hasta $250,000. Si el banco cierra, recuperas tu dinero. El cripto <strong>no tiene ninguna protección similar</strong>. Si la plataforma es hackeada, cierra, o desaparece (como pasó con FTX en 2022), puedes perder todo sin ningún recurso legal.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — cuenta bancaria vs. caja fuerte en casa',
-        html: 'Una cuenta en Coinbase es como una cuenta bancaria: el banco (Coinbase) guarda tu dinero, tú tienes un usuario y contraseña, y si la olvidas te pueden ayudar. Pero si el banco falla, dependes de que alguien te lo devuelva. Una billetera propia (auto-custodia) es como una caja fuerte en tu casa: nadie más tiene la llave, nadie puede quitarte lo tuyo — pero si pierdes la combinación, tampoco hay nadie que pueda abrirla por ti. Por eso dicen "not your keys, not your coins" — si la plataforma guarda tus claves, estás confiando en ella.',
+        html: 'Una cuenta en Coinbase es como una cuenta bancaria: si olvidas la contraseña te ayudan. Pero si la plataforma falla, dependes de que alguien te devuelva el dinero. Una billetera propia es como una caja fuerte en casa: nadie puede quitarte lo tuyo, pero si pierdes la combinación no hay nadie que la abra. "Not your keys, not your coins."',
       },
+
+      // ── Riesgo 3 ─────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -432,8 +692,29 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'En el mundo del cripto, muchos errores no se pueden deshacer. Si mandas cripto a la dirección equivocada, se pierde para siempre — no hay "cancelar", no hay servicio al cliente que lo recupere.<br><br>Si tienes tu propia billetera (auto-custodia), la clave que protege todo es la <strong>frase semilla</strong> — esas 12 a 24 palabras especiales. Si olvidas la contraseña de tu billetera pero tienes la frase semilla, puedes recuperar todo en un dispositivo nuevo. Pero si pierdes la frase semilla, el acceso se pierde para siempre — no importa cuánta tecnología o cuántos abogados tengas. Se estima que millones de bitcoins están bloqueados para siempre porque sus dueños perdieron su frase semilla. <strong>Si usas Coinbase u otra plataforma, este riesgo no aplica</strong> — ellos gestionan las claves por ti.',
+        html: 'En cripto, muchos errores no tienen vuelta atrás. Si mandas cripto a la dirección equivocada, se pierde para siempre — no hay "cancelar" ni servicio al cliente que lo recupere. Si usas tu propia billetera, la <strong>frase semilla</strong> (12–24 palabras) es la llave de todo. Si la pierdes, pierdes el acceso permanentemente. Se estima que millones de bitcoins están bloqueados para siempre por esta razón. <strong>Si usas Coinbase, este riesgo no aplica</strong> — ellos gestionan las claves.',
       },
+      {
+        type: 'quick-check',
+        question: 'Si envías Bitcoin a la dirección equivocada por error, ¿qué pasa?',
+        options: [
+          {
+            text: 'Puedes cancelar la transacción si actúas en los primeros 10 minutos',
+            explanation: 'No existe esa ventana de cancelación en Bitcoin. Una vez confirmada la transacción en la blockchain, es permanente e irreversible. Nadie — ni Coinbase, ni el gobierno, ni nadie — puede revertirla.',
+          },
+          {
+            text: 'Se pierde para siempre — no hay forma de recuperarlo',
+            correct: true,
+            explanation: '¡Correcto! Por eso es tan importante verificar la dirección antes de enviar. El cripto fue diseñado para ser irreversible — eso lo hace seguro contra fraudes bancarios, pero también significa que los errores son permanentes.',
+          },
+          {
+            text: 'Coinbase o la plataforma pueden recuperarlo si reportas el error',
+            explanation: 'Las plataformas no tienen poder para revertir transacciones en la blockchain. Coinbase no controla la red de Bitcoin — solo te ayuda a acceder a ella. Una vez enviado, está enviado.',
+          },
+        ],
+      },
+
+      // ── Riesgos 4-6 ──────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -441,7 +722,7 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'El mundo del cripto está lleno de fraudes, y las personas mayores son especialmente el objetivo. Los estafadores saben que el cripto es confuso y usan esa confusión para robar dinero. Si alguien te promete ganancias garantizadas, te presiona para invertir rápido, o te pide que mandes cripto antes de recibir algo — es una estafa. <strong>La próxima lección cubre todo esto en detalle</strong> porque es extremadamente importante.',
+        html: 'El mundo del cripto está lleno de fraudes. Los estafadores usan la confusión para robar. Si alguien te promete ganancias garantizadas, te presiona para invertir rápido, o te pide que mandes cripto primero — es una estafa. <strong>La siguiente lección cubre esto en detalle</strong> porque es extremadamente importante.',
       },
       {
         type: 'heading',
@@ -450,7 +731,7 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'En los Estados Unidos, las ganancias de cripto se reportan al <strong>IRS</strong> y pagan impuestos, igual que cualquier otra inversión. Cada vez que vendes cripto por más de lo que pagaste, tienes una ganancia de capital que debes declarar. Es tu responsabilidad mantener registros de todo — cuándo compraste, cuánto pagaste, cuándo vendiste y por cuánto.',
+        html: 'En Estados Unidos, las ganancias de cripto se reportan al <strong>IRS</strong> igual que cualquier inversión. Cada vez que vendes cripto por más de lo que pagaste, tienes una ganancia de capital que debes declarar. Guarda registros de todo — cuándo compraste, cuánto pagaste, cuándo vendiste.',
       },
       {
         type: 'heading',
@@ -459,21 +740,24 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Los gobiernos de todo el mundo están todavía decidiendo cómo regular el cripto. En algunos países ya lo han restringido fuertemente. En Estados Unidos, las reglas cambian constantemente. Cambios en las leyes pueden afectar el precio o la disponibilidad del cripto en cualquier momento.',
+        html: 'Los gobiernos del mundo todavía están decidiendo cómo regular el cripto. En algunos países ya lo han restringido fuertemente. En EE.UU., las reglas cambian. Cambios en las leyes pueden afectar el precio o la disponibilidad del cripto en cualquier momento.',
       },
       {
         type: 'checklist',
         items: [
           'Solo invierte lo que puedes perder al 100% sin que afecte tu vida',
           'Nunca te apresures — las "oportunidades únicas" son señal de alerta',
-          'Si alguien te presiona para invertir rápido, es una estafa',
-          'Las ganancias garantizadas no existen en cripto — absolutamente nunca',
+          'Las ganancias garantizadas no existen en cripto — nunca',
           'No inviertas bajo la presión de nadie, ni de familia',
-          'Guarda tus contraseñas en papel, en lugar seguro en casa',
+          'Guarda tus contraseñas en papel, en lugar seguro',
           'Diversifica — no pongas todo en una sola moneda',
-          'Si algo parece demasiado bueno para ser verdad, es porque no es verdad',
+          'Si algo parece demasiado bueno para ser verdad, no lo es',
           'Guarda registro de todo para el IRS',
         ],
+      },
+      {
+        type: 'self-reflect',
+        prompt: '¿Cuál de estos riesgos te parece más difícil de manejar personalmente? ¿La volatilidad, la falta de protección, o el miedo a cometer errores?',
       },
       {
         type: 'video',
@@ -497,6 +781,30 @@ export const LESSONS: Lesson[] = [
     xp: 175,
     quizQuestionCount: 7,
     content: [
+
+      // ── Activación ──────────────────────────────────────────────────────
+      {
+        type: 'opening-question',
+        question: '¿Alguien alguna vez te ha contactado ofreciéndote una oportunidad de cripto que parecía demasiado buena?',
+        options: [
+          {
+            text: 'Sí — y no sabía si era legítima o no',
+            response: 'Eso es exactamente lo que esta lección resuelve. Vas a aprender a reconocer las señales de alerta antes de que sea tarde.',
+          },
+          {
+            text: 'No todavía, pero quiero saber cómo reconocerlas',
+            response: 'El mejor momento para aprender esto es antes de que te pase. Esta lección te da las herramientas exactas para reconocer cada tipo de estafa.',
+          },
+          {
+            text: 'Creo que ya fui víctima de algo así',
+            response: 'Lamentablemente pasa mucho. Esta lección te ayuda a entender qué pasó y cómo protegerte en el futuro. No es tu culpa — estas estafas están diseñadas por expertos.',
+          },
+          {
+            text: 'He visto cuentas de "expertos" en redes sociales prometiendo ganancias',
+            response: 'Eso es una de las estafas más comunes. Esta lección cubre exactamente ese caso y cómo identificar si alguien es real o un fraude.',
+          },
+        ],
+      },
       {
         type: 'warn',
         title: '🚨 La regla más importante de toda esta guía',
@@ -619,6 +927,24 @@ export const LESSONS: Lesson[] = [
         ],
       },
       {
+        type: 'scenario',
+        setup: 'Son las 11pm. Recibes un WhatsApp de un número desconocido: "Hola, soy Carlos de soporte de Coinbase. Detectamos actividad sospechosa en tu cuenta. Para protegerla necesitamos que nos confirmes tu frase semilla ahora mismo o la cuenta será suspendida en 30 minutos."',
+        choices: [
+          {
+            text: 'Les doy la frase semilla — no quiero que suspendan mi cuenta',
+            consequence: 'Esto es exactamente lo que el estafador quiere. Coinbase NUNCA te pedirá tu frase semilla — ni por WhatsApp, ni por correo, ni por teléfono. La frase semilla es solo tuya. Si la compartes, el estafador tiene acceso total y permanente a todo tu cripto. La urgencia y el horario nocturno son señales diseñadas para que no pienses bien.',
+          },
+          {
+            text: 'No respondo nada y al día siguiente entro directamente a coinbase.com para verificar mi cuenta',
+            consequence: 'Perfecto. Esta es exactamente la respuesta correcta. Si hubiera un problema real con tu cuenta, seguirá existiendo mañana. La urgencia artificial ("30 minutos") es la herramienta principal del estafador. Verificar directamente en el sitio oficial — nunca por un enlace que te mandaron — es la forma segura de confirmar.',
+          },
+          {
+            text: 'Les pregunto más información antes de hacer nada',
+            consequence: 'Preguntar más es mejor que actuar de inmediato, pero ten cuidado: los estafadores son hábiles y pueden inventar respuestas convincentes. El estándar correcto es no dar ninguna información y verificar por tu cuenta directamente en el sitio oficial. Recuerda: ningún soporte legítimo necesita tu frase semilla.',
+          },
+        ],
+      },
+      {
         type: 'warn',
         title: '🚨 Repite esto hasta memorizarlo',
         html: '<strong>Ninguna persona legítima te pedirá tus contraseñas, tu frase semilla, ni que mandes cripto primero.</strong><br><br>Si tienes duda sobre si algo es una estafa, la respuesta correcta siempre es esperar, no hacer nada, y consultar con alguien de confianza antes de actuar. El tiempo siempre está de tu lado cuando se trata de proteger tu dinero.',
@@ -639,10 +965,36 @@ export const LESSONS: Lesson[] = [
     xp: 100,
     quizQuestionCount: 5,
     content: [
+
+      // ── Activación ──────────────────────────────────────────────────────
+      {
+        type: 'opening-question',
+        question: 'Si tuvieras que adivinar: ¿qué crees que hace que el precio de Bitcoin suba?',
+        options: [
+          {
+            text: 'Que más personas quieran comprarlo',
+            response: 'Exactamente — y hay más detrás de eso. Esta lección explica los cuatro factores principales que crean esa demanda, y por qué algunos son más sostenibles que otros.',
+          },
+          {
+            text: 'Las noticias y lo que dice la gente famosa',
+            response: 'Las noticias y figuras públicas sí mueven el precio a corto plazo — pero no son los únicos factores. Esta lección te muestra los fundamentales más estructurales que importan a largo plazo.',
+          },
+          {
+            text: 'Honestamente no sé — parece que sube y baja sin razón',
+            response: 'Esa sensación es común. El cripto parece caótico desde afuera, pero hay factores identificables que lo mueven. Esta lección los explica de manera que puedas empezar a entender el patrón.',
+          },
+          {
+            text: 'Que sea más escaso cada vez, como el oro',
+            response: 'Eso es uno de los cuatro factores principales — y es muy importante. Esta lección profundiza en la escasez y los otros tres elementos que juntos explican la tesis de inversión.',
+          },
+        ],
+      },
       {
         type: 'info',
-        html: '<strong>Nota importante:</strong> Esta lección explica factores que <em>podrían</em> influir en el precio del cripto. No es una recomendación de inversión ni una predicción. El mercado es impredecible y el valor puede bajar tanto como puede subir.',
+        html: '<strong>Nota:</strong> Esta lección explica factores que <em>podrían</em> influir en el precio. No es una recomendación de inversión ni una predicción. El mercado es impredecible y el valor puede bajar tanto como puede subir.',
       },
+
+      // ── Factor 1 ─────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -650,27 +1002,50 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'La regla más básica del mercado: cuando hay poca cantidad de algo y mucha gente lo quiere, el precio sube. Bitcoin tiene las dos condiciones al mismo tiempo: cantidad máxima fija (21 millones) y demanda que ha ido creciendo con el tiempo.',
+        html: 'La regla más básica del mercado: cuando hay poca cantidad de algo y mucha gente lo quiere, el precio sube. Bitcoin tiene las dos condiciones: cantidad máxima fija (21 millones para siempre) y demanda que ha crecido con el tiempo.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — el terreno frente al mar',
-        html: 'Los terrenos frente al mar son caros porque no se pueden fabricar más — hay una cantidad fija de costa en el mundo. Si cada año más personas quieren vivir frente al mar, el precio de esos terrenos tiende a subir. Bitcoin tiene una característica similar: la cantidad total es fija para siempre, programada en su código. Si la demanda crece, el precio tiene presión alcista.',
+        html: 'Los terrenos frente al mar son caros porque no se pueden fabricar más. Si cada año más personas quieren uno, el precio sube. Bitcoin tiene esa misma característica: cantidad fija para siempre. Si la demanda crece y la oferta no puede crecer, el precio tiene presión al alza.',
       },
+
+      // ── Factor 2 ─────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
-        text: 'Factor 2 — El Halving (La reducción a la mitad)',
+        text: 'Factor 2 — El Halving (reducción a la mitad)',
       },
       {
         type: 'paragraph',
-        html: 'Cada aproximadamente 4 años, la recompensa que reciben los mineros de Bitcoin se reduce a la mitad. Este evento se llama el <strong>Halving</strong>. Cuando hay menos bitcoin nuevo entrando al mercado, la escasez aumenta. Los halvings históricos de 2012, 2016 y 2020 han sido seguidos de períodos de precios más altos, aunque no de manera inmediata ni garantizada. El último halving fue en abril de 2024.',
+        html: 'Cada ~4 años, la recompensa que reciben los mineros de Bitcoin se reduce a la mitad — esto se llama el <strong>Halving</strong>. Menos bitcoin nuevo entrando al mercado significa más escasez. Los halvings de 2012, 2016, 2020 han sido seguidos de períodos de precios más altos, aunque no de manera inmediata ni garantizada. El último fue en abril de 2024.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — la cosecha de café',
-        html: 'Imagina que una región produce 1,000 sacos de café especial al mes. De repente, una nueva ley reduce la cosecha permitida a 500 sacos al mes. Si la cantidad de personas que quieren ese café sigue igual o crece, el precio por saco muy probablemente va a subir. El halving de Bitcoin hace algo parecido: reduce la nueva oferta que llega al mercado.',
+        html: 'Una región produce 1,000 sacos de café especial al mes. Una nueva ley reduce eso a 500 sacos. Si la demanda sigue igual o crece, el precio por saco sube. El halving de Bitcoin hace lo mismo: reduce la nueva oferta, aumentando la escasez artificialmente cada 4 años.',
       },
+      {
+        type: 'quick-check',
+        question: '¿Qué hace exactamente el Halving de Bitcoin?',
+        options: [
+          {
+            text: 'Divide el precio de Bitcoin a la mitad',
+            explanation: 'El halving no divide el precio — divide la recompensa que reciben los mineros. Eso afecta cuánto bitcoin nuevo entra al mercado, lo cual puede influir en el precio, pero no lo divide directamente.',
+          },
+          {
+            text: 'Reduce a la mitad la cantidad de bitcoin nuevo que se crea cada día',
+            correct: true,
+            explanation: '¡Correcto! Cada ~4 años, los mineros reciben la mitad de bitcoins por su trabajo. Eso significa menos oferta nueva, lo cual históricamente ha creado condiciones para precios más altos — aunque no hay garantía.',
+          },
+          {
+            text: 'Ocurre cuando el precio baja un 50% y sirve para estabilizarlo',
+            explanation: 'El halving es un evento programado en el código — ocurre cada ~210,000 bloques de transacciones (aproximadamente 4 años), sin importar el precio. No está relacionado con las caídas de precio.',
+          },
+        ],
+      },
+
+      // ── Factor 3 ─────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -678,17 +1053,15 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Durante años, el cripto fue visto como algo marginal. Eso ha cambiado significativamente. En enero de 2024, el gobierno de EE.UU. aprobó los primeros <strong>ETFs de Bitcoin al contado</strong> — fondos de inversión donde grandes instituciones financieras como BlackRock, Fidelity y Vanguard pueden ofrecer Bitcoin a sus clientes. Esto abrió la puerta a billones de dólares en inversión institucional.',
-      },
-      {
-        type: 'paragraph',
-        html: 'Además, empresas conocidas como MicroStrategy, Tesla y Square han incluido Bitcoin en sus reservas corporativas. Cada vez más empresas aceptan cripto como forma de pago. Todo esto representa nueva demanda que antes no existía.',
+        html: 'En enero de 2024, EE.UU. aprobó los primeros <strong>ETFs de Bitcoin al contado</strong> — fondos donde instituciones como BlackRock y Fidelity ofrecen Bitcoin a millones de clientes. Esto abrió la puerta a billones de dólares en inversión que antes no podían entrar al mercado. Empresas como MicroStrategy y Tesla también tienen Bitcoin en sus reservas.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — el barrio que se pone de moda',
-        html: 'Imagina un vecindario donde antes solo vivían artistas y personas jóvenes con poco dinero. De repente, grandes empresas y restaurantes famosos abren locales ahí. El barrio se vuelve "cool". Los precios de las propiedades suben porque ahora hay más demanda — y más demanda de un tipo diferente (institucional, no solo individual). La adopción masiva del cripto por instituciones grandes tiene un efecto similar.',
+        html: 'Un vecindario de artistas y estudiantes de repente recibe grandes empresas y restaurantes famosos. Los precios de las propiedades suben — no porque el vecindario cambió, sino porque llegó un nuevo tipo de comprador con más capital. La llegada de instituciones financieras al cripto tiene ese efecto: más demanda, de mayor escala.',
       },
+
+      // ── Factor 4 ─────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -696,12 +1069,21 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Cada año más personas usan cripto para pagos reales, especialmente en países con monedas inestables. En El Salvador, Bitcoin es moneda de curso legal. Millones de personas usan cripto para enviar remesas a sus familias en otros países de manera más rápida y barata que los servicios tradicionales. A más uso real, más demanda del activo.',
+        html: 'Cada año más personas usan cripto para pagos reales, especialmente en países con monedas inestables. En El Salvador, Bitcoin es moneda de curso legal. Millones usan cripto para enviar remesas a sus familias de manera más rápida y barata que los servicios tradicionales. A más uso real, más demanda constante del activo.',
+      },
+      {
+        type: 'misconception',
+        myth: '"Si entiendo por qué sube el precio, puedo predecir cuándo comprar y cuándo vender."',
+        reality: 'Conocer los factores fundamentales es valioso, pero no da capacidad de predecir el mercado a corto plazo. Incluso los analistas profesionales fallan constantemente. El cripto reacciona a noticias inesperadas, regulaciones, pánico colectivo y factores imprevisibles. La estrategia más documentada que funciona para la mayoría es la de largo plazo con montos que no necesitas.',
       },
       {
         type: 'warn',
         title: '⚠️ Estos factores no garantizan que el precio siga subiendo',
-        html: 'El mercado de cripto es impredecible. Noticias negativas, nuevas regulaciones, pánico generalizado, o problemas técnicos pueden causar caídas enormes sin previo aviso. Históricamente el precio ha subido a largo plazo, pero el camino ha tenido bajadas del 50%, 70% y hasta 90%. <strong>Ningún análisis puede predecir con certeza lo que pasará.</strong>',
+        html: 'Noticias negativas, regulaciones nuevas, o pánico generalizado pueden causar caídas enormes sin previo aviso. Históricamente el precio ha subido a largo plazo, pero el camino ha tenido bajadas del 50%, 70% y 90%. <strong>Ningún análisis puede predecir con certeza lo que pasará.</strong>',
+      },
+      {
+        type: 'bridge',
+        html: 'Ya entiendes los <strong>cuatro factores</strong> que pueden mover el precio de Bitcoin: escasez fija, halvings cada 4 años, adopción institucional, y uso real. Con esto tienes el marco completo para entender por qué mucha gente lo ve como activo de inversión — y también por qué puede ser muy riesgoso. La última lección convierte todo esto en pasos prácticos concretos.',
       },
       {
         type: 'video',
@@ -725,10 +1107,36 @@ export const LESSONS: Lesson[] = [
     xp: 125,
     quizQuestionCount: 5,
     content: [
+
+      // ── Activación ──────────────────────────────────────────────────────
+      {
+        type: 'opening-question',
+        question: 'Después de todo lo que aprendiste — ¿cómo te sientes sobre la posibilidad de invertir en cripto?',
+        options: [
+          {
+            text: 'Lista para empezar con algo pequeño',
+            response: 'Eso es exactamente el lugar correcto para empezar. Esta lección te da el camino concreto paso a paso para hacerlo de manera segura y consciente.',
+          },
+          {
+            text: 'Todavía tengo dudas — no estoy segura',
+            response: 'Las dudas son completamente válidas y muy inteligentes. Esta lección no te va a presionar — te da los principios para que puedas tomar una decisión informada, cuando estés lista, si lo decides.',
+          },
+          {
+            text: 'Creo que no es para mí — es demasiado riesgo',
+            response: 'Esa es una decisión completamente respetable y puede ser la correcta para tu situación. Esta lección te deja los consejos por si cambias de opinión, y te confirma que no invertir también es una decisión válida.',
+          },
+          {
+            text: 'Quiero entender el proceso antes de decidir',
+            response: 'Perfecto. Esta lección te lleva paso a paso por cómo funciona el proceso de compra, qué plataformas usar, y qué hacer después — sin presión para tomar ninguna decisión hoy.',
+          },
+        ],
+      },
       {
         type: 'info',
-        html: 'Esta lección asume que ya entiendes los riesgos de la lección anterior y que estás considerando comenzar con una cantidad pequeña. Estos consejos son conservadores y están pensados para protegerte, no para hacerte rica rápido.',
+        html: 'Esta lección asume que ya entiendes los riesgos y que estás considerando empezar con una cantidad pequeña. Estos consejos son conservadores y están pensados para protegerte, no para hacerte rica rápido.',
       },
+
+      // ── Consejo 1 ────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -736,22 +1144,45 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Si quieres experimentar con cripto, empieza con una cantidad que puedas perder completamente sin que afecte tu vida. Muchas personas comienzan con $25 o $50 solo para aprender cómo funciona — ver cómo comprar, cómo se mueve el precio, cómo retirarlo. Esto es una inversión en educación, no en ganancia.',
+        html: 'Empieza con una cantidad que puedas perder completamente sin que afecte tu vida. Muchas personas comienzan con $25 o $50 solo para aprender cómo funciona — ver cómo comprar, cómo se mueve el precio, cómo retirarlo. Esto es una inversión en educación, no en ganancia.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — la muestra del mercado',
-        html: 'Cuando vas al mercado y la señora te ofrece una muestra de su queso nuevo, no compras cinco kilos sin haberlo probado primero. Empezar pequeño en cripto es como esa muestra — pruebas cómo funciona, ves si te sientes cómoda con los altibajos, y decides si quieres más.',
+        html: 'Cuando la señora del mercado te ofrece una muestra de su queso nuevo, no compras cinco kilos sin haberlo probado. Empezar pequeño en cripto es esa muestra — pruebas cómo funciona, ves si te sientes cómoda con los altibajos, y decides si quieres más.',
       },
+
+      // ── Consejo 2 ────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
-        text: 'Consejo 2 — Usa plataformas establecidas y reconocidas',
+        text: 'Consejo 2 — Usa plataformas establecidas',
       },
       {
         type: 'paragraph',
-        html: 'No todas las plataformas de cripto son iguales. Usa plataformas que tienen años de historia, millones de usuarios, y están reguladas. Algunos ejemplos confiables son <strong>Coinbase</strong> (muy fácil de usar, tiene versión en español), <strong>Kraken</strong>, y para acciones, tu corredor de bolsa habitual (Fidelity, Schwab, Robinhood). Evita plataformas desconocidas que alguien te recomendó en redes sociales.',
+        html: 'Usa plataformas con años de historia, millones de usuarios, y regulación. Opciones confiables: <strong>Coinbase</strong> (fácil, tiene español), <strong>Kraken</strong>, y para acciones mineras tu corredor habitual (Fidelity, Schwab, Robinhood). Evita plataformas desconocidas que alguien te recomendó en redes sociales.',
       },
+      {
+        type: 'quick-check',
+        question: 'Alguien en redes te recomienda una plataforma de cripto que "da mejores rendimientos que Coinbase". ¿Qué haces?',
+        options: [
+          {
+            text: 'La pruebo con $50 — si funciona, meto más',
+            explanation: 'El problema es que estas plataformas fraudulentas suelen mostrar "ganancias" falsas al principio para ganar confianza. Cuando intentas retirar, el dinero desaparece. El historial verificable importa mucho más que las promesas.',
+          },
+          {
+            text: 'Busco esa plataforma independientemente para ver su historial y regulación antes de hacer nada',
+            correct: true,
+            explanation: '¡Correcto! Verificar de manera independiente — no usando los links o información que te dieron — es el paso clave. Busca reseñas en fuentes neutrales, verifica si está registrada como broker, y busca quejas. Si no encuentras historial verificable, no la uses.',
+          },
+          {
+            text: 'Como me la recomendó alguien conocido, debe ser confiable',
+            explanation: 'Desafortunadamente, muchas estafas se propagan a través de personas conocidas que ya fueron víctimas — y ahora sin saberlo invitan a otros. El origen de la recomendación no garantiza legitimidad. Siempre verifica independientemente.',
+          },
+        ],
+      },
+
+      // ── Consejo 3 ────────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -759,13 +1190,15 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'Cuando el precio baja mucho — y va a bajar, es inevitable — muchas personas se asustan y venden, convirtiendo una pérdida temporal en una pérdida permanente. Los inversionistas que han tenido mejores resultados históricamente son los que aguantaron los momentos difíciles sin vender. Esto solo es posible si <strong>invertiste dinero que no necesitas a corto plazo</strong>.',
+        html: 'Cuando el precio baja — y va a bajar, es inevitable — muchas personas venden por miedo, convirtiendo una pérdida temporal en permanente. Los inversores con mejores resultados históricamente son los que aguantaron sin vender. Esto solo es posible si <strong>invertiste dinero que no necesitas a corto plazo</strong>.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — la planta que crece despacio',
-        html: 'Si plantas un árbol de mango y al mes no tiene frutos, no lo arrancas de raíz. Lo riegas y esperas. Algunas personas en cripto plantan su semilla y la sacan antes de que madure porque se asustaron con una tormenta. Las tormentas son normales — son parte del proceso.',
+        html: 'Si plantas un árbol de mango y al mes no tiene frutos, no lo arrancas. Lo riegas y esperas. Algunas personas en cripto sacan su inversión en la primera tormenta. Las tormentas son normales — son parte del ciclo.',
       },
+
+      // ── Consejos 4-6 ─────────────────────────────────────────────────────
       {
         type: 'heading',
         level: 2,
@@ -773,43 +1206,51 @@ export const LESSONS: Lesson[] = [
       },
       {
         type: 'paragraph',
-        html: 'No pongas todos tus ahorros en cripto, ni todo el cripto en una sola moneda. Si decides invertir en cripto, que sea solo una pequeña parte de tus inversiones totales. El resto en cosas más estables: cuentas de ahorro, bonos del gobierno, fondos de inversión diversificados. El cripto puede ser un pequeño complemento, no toda la estrategia.',
+        html: 'No pongas todos tus ahorros en cripto, ni todo el cripto en una sola moneda. El cripto debe ser solo una pequeña parte de tus inversiones totales. El resto en cosas más estables: cuentas de ahorro, bonos, fondos de inversión. El cripto es un complemento, no toda la estrategia.',
       },
       {
         type: 'analogy',
         label: '💡 Piénsalo así — no pongas todos los huevos en una canasta',
-        html: 'Si cargas todos tus huevos en una sola canasta y tropiezas, los pierdes todos. Si los distribuyes en varias canastas, un tropiezo solo rompe algunos. En inversiones, esto se llama diversificación — es uno de los principios más importantes de las finanzas personales.',
+        html: 'Si cargas todos tus huevos en una canasta y tropiezas, los pierdes todos. Distribuidos en varias canastas, un tropiezo solo rompe algunos. Eso es diversificación — uno de los principios más importantes de las finanzas personales.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Consejo 5 — Guarda registro de todo para el IRS',
+        text: 'Consejo 5 — Guarda registro para el IRS',
       },
       {
         type: 'paragraph',
-        html: 'En EE.UU., las ganancias de cripto se declaran al IRS como ganancias de capital. Guarda un registro simple: fecha de compra, cuánto pagaste, fecha de venta, cuánto recibiste. Puede ser en un cuaderno o en una hoja de cálculo. Si no guardas registros, la temporada de impuestos puede ser muy complicada.',
+        html: 'En EE.UU., las ganancias de cripto se declaran al IRS como ganancias de capital. Guarda un registro simple: fecha de compra, cuánto pagaste, fecha de venta, cuánto recibiste. Un cuaderno o hoja de cálculo sirve. Sin registros, los impuestos se complican mucho.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Consejo 6 — Protege tus contraseñas como si fueran dinero en efectivo',
+        text: 'Consejo 6 — Protege tu frase semilla como si fuera efectivo',
       },
       {
         type: 'paragraph',
-        html: 'Tu <strong>frase semilla</strong> (seed phrase) — una serie de 12 o 24 palabras — es la llave maestra de tu cripto. Quien la tenga, tiene tu cripto. Escríbela a mano en papel y guárdala en un lugar físico seguro en tu casa. <strong>Nunca</strong> la fotografíes, la guardes en tu teléfono, la mandes por correo o por WhatsApp, ni se la des a nadie — absolutamente nadie.',
+        html: 'Tu <strong>frase semilla</strong> (12 o 24 palabras) es la llave maestra. Quien la tiene, tiene tu cripto. Escríbela a mano en papel, guárdala en lugar físico seguro. <strong>Nunca</strong> la fotografíes, guardes en el teléfono, mandes por WhatsApp, ni se la des a nadie.',
       },
       {
         type: 'checklist',
         items: [
           'Empieza con una cantidad pequeña que puedas perder completamente',
           'Usa solo plataformas reconocidas con años de historia',
-          'No vendas en pánico cuando el precio baje — ya va a bajar',
+          'No vendas en pánico cuando el precio baje',
           'El cripto debe ser solo una pequeña parte de tus inversiones totales',
           'Guarda registro de compras y ventas para tus impuestos',
           'Escribe tu frase semilla en papel y guárdala en lugar seguro',
           'Nunca compartas contraseñas ni frase semilla con nadie',
           'Consulta con un asesor financiero antes de invertir cantidades significativas',
         ],
+      },
+      {
+        type: 'self-reflect',
+        prompt: 'Habiendo terminado el curso: ¿qué cambió en tu entendimiento del cripto? ¿Qué harías diferente ahora comparado con antes de empezar?',
+      },
+      {
+        type: 'bridge',
+        html: '🎉 <strong>Completaste el curso.</strong> Ahora entiendes qué es el cripto, cómo funciona el blockchain, por qué Bitcoin tiene valor, qué lo hace subir y bajar, cuáles son los riesgos reales, cómo protegerte de estafas, y cómo empezar de manera conservadora si lo decides. Eso es más de lo que sabe la mayoría de la gente. El siguiente paso es tuyo.',
       },
       {
         type: 'info',

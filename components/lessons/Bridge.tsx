@@ -12,7 +12,7 @@ export default function Bridge({ html }: BridgeProps) {
         </span>
       </div>
       <div
-        className="text-teal-100 text-base leading-relaxed lesson-prose"
+        className="text-teal-100 text-base leading-relaxed [&_strong]:text-white [&_em]:text-teal-200"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

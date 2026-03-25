@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { ContentBlock } from '@/lib/content/types'
 import AnalogyBox from './AnalogyBox'
 import WarnBox from './WarnBox'
@@ -17,29 +17,41 @@ import SelfReflect from './SelfReflect'
 
 interface LessonContentProps {
   blocks: ContentBlock[]
+  onOpeningAnswered?: () => void
 }
 
-export default function LessonContent({ blocks }: LessonContentProps) {
+export default function LessonContent({ blocks, onOpeningAnswered }: LessonContentProps) {
   // If the lesson starts with an opening-question, gate the rest of the
   // content behind it until the learner has made a selection.
   const firstBlock = blocks[0]
   const hasOpeningQuestion = firstBlock?.type === 'opening-question'
   const [openingDone, setOpeningDone] = useState(!hasOpeningQuestion)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   const contentBlocks = hasOpeningQuestion ? blocks.slice(1) : blocks
 
+  function handleContinue() {
+    setOpeningDone(true)
+    onOpeningAnswered?.()
+    // Scroll to content after state update paints
+    setTimeout(() => {
+      contentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 50)
+  }
+
   return (
     <div className="space-y-6">
-      {/* Opening question gate */}
-      {hasOpeningQuestion && firstBlock.type === 'opening-question' && (
+      {/* Opening question gate — hidden once answered */}
+      {hasOpeningQuestion && !openingDone && firstBlock.type === 'opening-question' && (
         <OpeningQuestion
           question={firstBlock.question}
           options={firstBlock.options}
-          onContinue={() => setOpeningDone(true)}
+          onContinue={handleContinue}
         />
       )}
 
       {/* Main lesson content — revealed after opening question is answered */}
+      {openingDone && <div ref={contentRef} />}
       {openingDone && contentBlocks.map((block, i) => {
         switch (block.type) {
 

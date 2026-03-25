@@ -45,17 +45,22 @@ export default function LessonPageClient({
   const [reachedBottom, setReachedBottom] = useState(false)
   const [justPassed, setJustPassed] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  // Track whether the opening question (if any) has been answered before
+  // allowing the IntersectionObserver to fire. This prevents the quiz CTA
+  // from prematurely showing "¡Terminaste de leer!" while content is gated.
+  const hasOpeningQuestion = lesson.content[0]?.type === 'opening-question'
+  const [openingAnswered, setOpeningAnswered] = useState(!hasOpeningQuestion)
 
   // Track when user scrolls to the bottom of the lesson content
   useEffect(() => {
-    if (reachedBottom || view !== 'lesson') return
+    if (reachedBottom || view !== 'lesson' || !openingAnswered) return
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setReachedBottom(true) },
       { threshold: 0.1 }
     )
     if (bottomRef.current) observer.observe(bottomRef.current)
     return () => observer.disconnect()
-  }, [reachedBottom, view])
+  }, [reachedBottom, view, openingAnswered])
 
   const alreadyPassed = lessonProgress?.quiz_passed === true || justPassed
 
@@ -81,60 +86,65 @@ export default function LessonPageClient({
 
       {view === 'lesson' ? (
         <>
-          <LessonContent blocks={lesson.content} />
+          <LessonContent
+            blocks={lesson.content}
+            onOpeningAnswered={() => setOpeningAnswered(true)}
+          />
 
           {/* Sentinel element — when this is visible, user has reached the bottom */}
           <div ref={bottomRef} />
 
-          {/* Quiz CTA — always shown, but copy changes before/after reading */}
-          <div className="mt-10 bg-white border-2 border-cream-300 rounded-3xl p-6 text-center shadow-warm">
-            <div className="text-4xl mb-3">{reachedBottom ? '✨' : '📖'}</div>
-            <h2 className="font-display font-bold text-teal-900 text-2xl mb-2">
-              {reachedBottom ? '¡Terminaste de leer!' : 'Sigue leyendo para continuar'}
-            </h2>
-            <p className="text-brown-700 text-base mb-5 leading-relaxed">
-              {alreadyPassed
-                ? nextLesson
-                  ? 'Ya completaste esta lección. Continúa con la siguiente o practica el quiz de nuevo.'
-                  : 'Ya completaste esta lección. Puedes hacer el quiz de nuevo para practicar con preguntas nuevas.'
-                : reachedBottom
-                ? `Ahora demuestra lo que aprendiste. Necesitas responder bien ${Math.ceil(lesson.quizQuestionCount * 0.8)} de ${lesson.quizQuestionCount} preguntas para completar la lección.`
-                : 'Lee toda la lección y luego podrás hacer el quiz.'}
-            </p>
+          {/* Quiz CTA — hidden until opening question is answered (if any) */}
+          {openingAnswered && (
+            <div className="mt-10 bg-white border-2 border-cream-300 rounded-3xl p-6 text-center shadow-warm">
+              <div className="text-4xl mb-3">{reachedBottom ? '✨' : '📖'}</div>
+              <h2 className="font-display font-bold text-teal-900 text-2xl mb-2">
+                {reachedBottom ? '¡Terminaste de leer!' : 'Sigue leyendo para continuar'}
+              </h2>
+              <p className="text-brown-700 text-base mb-5 leading-relaxed">
+                {alreadyPassed
+                  ? nextLesson
+                    ? 'Ya completaste esta lección. Continúa con la siguiente o practica el quiz de nuevo.'
+                    : 'Ya completaste esta lección. Puedes hacer el quiz de nuevo para practicar con preguntas nuevas.'
+                  : reachedBottom
+                  ? `Ahora demuestra lo que aprendiste. Necesitas responder bien ${Math.ceil(lesson.quizQuestionCount * 0.8)} de ${lesson.quizQuestionCount} preguntas para completar la lección.`
+                  : 'Lee toda la lección y luego podrás hacer el quiz.'}
+              </p>
 
-            <div className="space-y-3">
-              {alreadyPassed && nextLesson ? (
-                <>
-                  <button
-                    onClick={() => router.push(nextLesson.href)}
-                    className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
-                  >
-                    {nextLesson.emoji} {nextLesson.title} →
-                  </button>
+              <div className="space-y-3">
+                {alreadyPassed && nextLesson ? (
+                  <>
+                    <button
+                      onClick={() => router.push(nextLesson.href)}
+                      className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
+                    >
+                      {nextLesson.emoji} {nextLesson.title} →
+                    </button>
+                    <button
+                      onClick={() => { setView('quiz'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                      className="w-full text-brown-500 hover:text-brown-700 text-base font-medium py-3 transition-colors"
+                    >
+                      🔄 Hacer el quiz otra vez
+                    </button>
+                  </>
+                ) : (
                   <button
                     onClick={() => { setView('quiz'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-                    className="w-full text-brown-500 hover:text-brown-700 text-base font-medium py-3 transition-colors"
+                    className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
                   >
-                    🔄 Hacer el quiz otra vez
+                    {alreadyPassed ? '🔄 Hacer el quiz otra vez' : '🧠 Hacer el quiz →'}
                   </button>
-                </>
-              ) : (
-                <button
-                  onClick={() => { setView('quiz'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-                  className="w-full bg-teal-900 hover:bg-teal-800 text-white font-display font-bold text-xl rounded-2xl py-4 transition-colors"
-                >
-                  {alreadyPassed ? '🔄 Hacer el quiz otra vez' : '🧠 Hacer el quiz →'}
-                </button>
-              )}
+                )}
 
-              <button
-                onClick={() => router.push('/inicio')}
-                className="w-full text-brown-500 hover:text-brown-700 text-base font-medium py-3 transition-colors"
-              >
-                Volver al inicio
-              </button>
+                <button
+                  onClick={() => router.push('/inicio')}
+                  className="w-full text-brown-500 hover:text-brown-700 text-base font-medium py-3 transition-colors"
+                >
+                  Volver al inicio
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </>
       ) : (
         /* Quiz view — QuizContainer stays mounted and manages ALL its own states */
